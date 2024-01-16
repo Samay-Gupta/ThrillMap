@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 10px;
+    margin: 10px;
+    background-color: #FFE5E5;
+}
+
+.responsive-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.bg-red {
+    background-color: #e74c3c;
+}
+
+.bg-orange {
+    background-color: #f39c12;
+}
+
+.bg-green {
+    background-color: #2ecc71;
+}
+
+.page-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+}

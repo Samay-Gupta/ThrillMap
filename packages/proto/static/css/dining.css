@@ -1,0 +1,47 @@
+.restaurant-info {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.restaurant-info h2, .restaurant-info h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.restaurant-info p, .menu-item-description {
+    color: #666;
+    font-size: 1em;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.menu-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.menu-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.menu-item-title {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.menu-item-price {
+    font-weight: bold;
+    color: #333;
+}
+
+.menu-item-description {
+    color: #555;
+    font-size: 0.9em;
+    margin-top: 5px;
+}

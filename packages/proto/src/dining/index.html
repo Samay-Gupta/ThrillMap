@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dining</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/index.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/breadcrumb.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/dining.css">
+</head>
+<body>
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" class="breadcrumb-text">Home</a></li>
+        <li class="breadcrumb-item">Dining</li>
+    </ul>
+    
+    <div class="page-title">Dining</div>
+
+    <div id="dining-container"></div>    
+
+    <script src="http://127.0.0.1:8081/js/index.js"></script>
+    <script src="http://127.0.0.1:8081/js/dining.js"></script>
+    <script>
+        setupOnDataLoad((data) => createDiningList(data.dining, 'dining-container'));
+    </script>
+</body>
+</html>
