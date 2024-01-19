@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Park Map</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/reset.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/tokens.css">
     <link rel="stylesheet" href="http://127.0.0.1:8081/css/index.css">
-    <link rel="stylesheet" href="http://127.0.0.1:8081/css/breadcrumb.css">
-    <link rel="stylesheet" href="http://127.0.0.1:8081/css/rides.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/components/navbar.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/rides/index.css">
 </head>
 <body>
-    <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/" class="breadcrumb-text">Home</a></li>
-        <li class="breadcrumb-item">Rides</li>
-    </ul>
-    
-    <div class="page-title">Rides</div>
+    <div class="navbar">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item-active" href="/rides">Rides</a>
+        <a class="navbar-item" href="/dining">Dining</a>
+        <a class="navbar-item" href="/events">Events</a>
+        <a class="navbar-item" href="/map">Park Map</a>
+    </div>
 
-    <nav>
+    <div class="main-content">
         <div class="ride-container">
             <a href="/rides/thrill_rides" class="ride-box bg-red">
                 <div class="ride-image" style="background-image:url('http://127.0.0.1:8081/images/thrill_rides.png');"></div>
@@ -34,7 +37,7 @@
                 <div class="ride-description">Enjoyable rides perfect for family fun.</div>
             </a>
         </div>
-    </nav>
+    </div>
 
     <script src="http://127.0.0.1:8081/js/index.js"></script>
 </body>

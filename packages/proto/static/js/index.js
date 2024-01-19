@@ -1,8 +1,18 @@
+const STATIC_URL = 'http://127.0.0.1:8081';
+
+function image(url) {
+    return STATIC_URL + '/images' + url;
+}
+
 function setImageHeight(){
     var screenHeight = window.innerHeight || document.documentElement.clientHeight;
     var img = document.querySelector('.responsive-image');
     if (img) {
-        img.style.height = screenHeight * (2 / 3) + 'px';
+        img.style.height = screenHeight * (3 / 5) + 'px';
+    }
+    var body = document.querySelector('body');
+    if (body) {
+        body.style.minHeight = screenHeight + 'px';
     }
 };
 

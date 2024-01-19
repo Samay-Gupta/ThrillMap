@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Thrill Rides</title>
+    <title>Park Map</title>
     <link rel="stylesheet" href="http://127.0.0.1:8081/css/reset.css">
     <link rel="stylesheet" href="http://127.0.0.1:8081/css/tokens.css">
     <link rel="stylesheet" href="http://127.0.0.1:8081/css/index.css">
     <link rel="stylesheet" href="http://127.0.0.1:8081/css/components/navbar.css">
-    <link rel="stylesheet" href="http://127.0.0.1:8081/css/components/lists.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/map/index.css">
 </head>
 <body>
     <div class="navbar">
         <a class="navbar-item" href="/">Home</a>
-        <a class="navbar-item-active" href="/rides">Rides</a>
+        <a class="navbar-item" href="/rides">Rides</a>
         <a class="navbar-item" href="/dining">Dining</a>
         <a class="navbar-item" href="/events">Events</a>
-        <a class="navbar-item" href="/map">Park Map</a>
+        <a class="navbar-item-active" href="/map">Park Map</a>
     </div>
 
     <div class="main-content">
-        <div class="list-title">Thrill Rides</div>
-        <div id="rides-list" class="list"></div>    
+        <img src="http://127.0.0.1:8081/images/park_map.png" alt="Park Map" class="responsive-image park-map">
+        <ul class="nav-list">
+            <li class="nav-item"><a class="nav-link bg-red" href="/rides">🎢&nbsp;&nbsp;&nbsp;Rides</a></li>
+            <li class="nav-item"><a class="nav-link bg-orange" href="/dining">🍴&nbsp;&nbsp;&nbsp;Dining</a></li>
+            <li class="nav-item"><a class="nav-link bg-green" href="/events">📅&nbsp;&nbsp;&nbsp;Events</a></li>
+        </ul>
     </div>
-    
+
     <script src="http://127.0.0.1:8081/js/index.js"></script>
-    <script src="http://127.0.0.1:8081/js/components/lists.js"></script>
-    <script src="http://127.0.0.1:8081/js/rides/ride_list.js"></script>
-    <script>
-        setupOnDataLoad((data) => createListView('rides-list', data.rides.thrill, createRideElement));
-    </script>
 </body>
 </html>
