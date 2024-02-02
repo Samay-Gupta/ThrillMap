@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Events</title>
+    <link rel="stylesheet" href="/assets/styles/reset.css" />
+    <link rel="stylesheet" href="/assets/styles/tokens.css" />
+    <link rel="stylesheet" href="/assets/styles/layout.css" />
+    <link rel="stylesheet" href="/assets/styles/events/index.css" />
+    <script type="module" src="/components/navbar.ts"></script>
+    <script type="module" src="/components/list.ts"></script>
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+
+    <app-list listTitle=""></app-list>
+
+    <script src="/assets/scripts/index.ts"></script>
+    <script src="/assets/scripts/events/index.ts"></script>
+    <script>
+      setupOnDataLoad(data => {
+        const appListElement = document.querySelector('app-list');
+        if (appListElement) {
+          appListElement.listData = getEventsListData(data.events);
+        }
+      });
+    </script>
+  </body>
+</html>

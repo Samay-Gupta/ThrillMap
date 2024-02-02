@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="/assets/styles/reset.css" />
+    <link rel="stylesheet" href="/assets/styles/tokens.css" />
+    <link rel="stylesheet" href="/assets/styles/layout.css" />
+    <link rel="stylesheet" href="/assets/styles/dining/restaurants.css" />
+    <script type="module" src="/components/navbar.ts"></script>
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+
+    <div id="dining-container" class="light-mode"></div>
+
+    <script src="/assets/scripts/index.ts"></script>
+    <script src="/assets/scripts/dining/restaurants.ts"></script>
+    <script>
+      setupOnDataLoad(data => {
+        const restaurant = getDiningDetails(data);
+        createDiningDetails(restaurant, 'dining-container');
+      });
+    </script>
+  </body>
+</html>

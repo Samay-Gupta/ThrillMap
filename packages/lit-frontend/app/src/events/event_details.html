@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Events</title>
+    <link rel="stylesheet" href="/assets/styles/reset.css" />
+    <link rel="stylesheet" href="/assets/styles/tokens.css" />
+    <link rel="stylesheet" href="/assets/styles/layout.css" />
+    <link rel="stylesheet" href="/assets/styles/events/event_details.css" />
+    <script type="module" src="/components/navbar.ts"></script>
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+
+    <div id="event-container"></div>
+
+    <script src="/assets/scripts/index.ts"></script>
+    <script src="/assets/scripts/events/event_details.ts"></script>
+    <script>
+      setupOnDataLoad(data => {
+        const event = getEventDetails(data);
+        createEventDetails(event, 'event-container');
+      });
+    </script>
+  </body>
+</html>

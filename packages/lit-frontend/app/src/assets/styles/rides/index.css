@@ -1,0 +1,12 @@
+.ride-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  font-size: var(--font-size2);
+}
+
+.ride-container > app-card {
+  flex: 0 1 calc(33% - 10px);
+}
