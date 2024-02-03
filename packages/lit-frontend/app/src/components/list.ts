@@ -160,13 +160,14 @@ const listStyles = css`
         font-size: 1.2em;
         min-width: 30vw;
         padding: 5px 10px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--color-gray1);
         border-radius: 10px;
         outline: none;
+        background-color: var(--color-background-primary);
     }
 
     .input-filter:focus {
-        border-color: #007bff;
+        border-color: var(--color-primary);
     }
     
     .select-filter {
@@ -181,15 +182,16 @@ const listStyles = css`
         background-color: color(--color-secondary);
         cursor: pointer;
         font-size: 1rem;
-        color: #333;
+        color: var(--color-gray2);
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="%23333" d="M6.5,7.5l3.5,3.5l3.5,-3.5l2.5,2.5l-6,6l-6,-6l2.5,-2.5Z"/></svg>');
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 12px 12px;
+        background-color: var(--color-background-primary);
     }
     
     .select-filter:focus {
-        border-color: #007bff;
+      border-color: var(--color-primary);
     }
 `;
 

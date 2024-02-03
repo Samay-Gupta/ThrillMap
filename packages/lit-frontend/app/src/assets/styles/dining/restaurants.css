@@ -1,9 +1,9 @@
 .restaurant {
-  border: 1px solid #ddd;
+  border: var(--border1);
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
-  background-color: --color-background-secondary;
+  background-color: var(--color-background-secondary);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -25,14 +25,14 @@
 }
 
 .restaurant-info > .restaurant-name {
-  color: #333;
+  color: var(--color-gray2);
 }
 
 .restaurant > .restaurant-menu {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--color-background-primary);
   margin-inline-start: 20px;
   border-radius: 8px;
   height: 100%;
@@ -47,7 +47,7 @@
 
 .restaurant-menu-items {
   margin-inline: 20px;
-  color: #444;
+  color: var(--color-gray2);
 }
 
 .restaurant-menu-item-title {

@@ -63,8 +63,8 @@
   height: 48px;
   width: 48px;
   margin-right: 16px;
-  -webkit-filter: invert(100%); /* safari 6.0 - 9.0 */
-  filter: invert(100%);
+  -webkit-filter: var(--invert); /* safari 6.0 - 9.0 */
+  filter: var(--invert);
 }
 
 .ride-details-text {
