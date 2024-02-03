@@ -56,5 +56,10 @@ async function setDisplayMode() {
   rootHTML.className = darkModeEnabled ? 'dark-mode' : 'light-mode';
 }
 
+async function isLogged() {
+  const Session = await import('./session.js');
+  return Session.default.getCookie('auth-key') !== '';
+}
+
 window.onload = setImageHeight;
 window.onresize = setImageHeight;

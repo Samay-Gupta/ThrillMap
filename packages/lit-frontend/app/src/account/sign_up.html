@@ -1,20 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
     <link rel="stylesheet" href="/assets/styles/reset.css" />
     <link rel="stylesheet" href="/assets/styles/tokens.css" />
     <link rel="stylesheet" href="/assets/styles/layout.css" />
+    <link rel="stylesheet" href="/assets/styles/account/sign_up.css" />
     <script type="module" src="/components/navbar.ts"></script>
-  </head>
-  <body>
+</head>
+<body>
     <app-navbar></app-navbar>
-    <div class="main-content"></div>
+    <form class="signup-form" id="signUpForm">
+      <label for="signup-username">Username:</label>
+      <input type="text" id="signup-username" name="username" placeholder="Choose a username" required>
+      <br>
+      <label for="signup-email">Email:</label>
+      <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+      <br>
+      <label for="signup-password">Password:</label>
+      <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+      <br>
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
+      <br>
+      <button type="button" onclick="signUpUser()">Sign Up</button>
+    </form>
     <script src="/assets/scripts/index.ts"></script>
-    <script>
-      mockLogin();
-    </script>
-  </body>
+    <script src="/assets/scripts/account/sign_up.ts"></script>
 </html>

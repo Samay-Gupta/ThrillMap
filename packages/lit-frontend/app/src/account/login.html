@@ -1,20 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="/assets/styles/reset.css" />
     <link rel="stylesheet" href="/assets/styles/tokens.css" />
     <link rel="stylesheet" href="/assets/styles/layout.css" />
+    <link rel="stylesheet" href="/assets/styles/account/login.css" />
     <script type="module" src="/components/navbar.ts"></script>
-  </head>
-  <body>
+</head>
+<body>
     <app-navbar></app-navbar>
-    <div class="main-content"></div>
+    <form class="login-form" id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter username" required>
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required>
+      <br>
+      <button type="button" onclick="loginUser()">Login</button>
+    </form>
     <script src="/assets/scripts/index.ts"></script>
-    <script>
-      mockLogin();
-    </script>
-  </body>
+    <script src="/assets/scripts/account/login.ts"></script>
+</body>
 </html>
