@@ -9,21 +9,14 @@
     <link rel="stylesheet" href="/assets/styles/layout.css" />
     <link rel="stylesheet" href="/assets/styles/dining/order.css" />
     <script type="module" src="/components/navbar.ts"></script>
+    <script type="module" src="/assets/scripts/display.ts"></script>
+    <script type="module" src="/components/order.ts"></script>
 </head>
 <body>
     <app-navbar></app-navbar>
 
-    <div class="order-container" id="order-container">
-    </div>
+    <restaurant-order></restaurant-order>
     
-
-    <script src="/assets/scripts/index.ts"></script>
-    <script src="/assets/scripts/dining/order.ts"></script>
-    <script>
-        setupOnDataLoad(data => {
-          const restaurant = getOrderDetails(data);
-          createOrderMenu(restaurant, 'order-container');
-        });
-      </script>
+    <script type="module" src="/assets/scripts/dining/order.ts"></script>
 </body>
 </html>

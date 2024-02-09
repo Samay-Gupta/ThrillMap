@@ -9,19 +9,13 @@
     <link rel="stylesheet" href="/assets/styles/layout.css" />
     <link rel="stylesheet" href="/assets/styles/rides/ride_details.css" />
     <script type="module" src="/components/navbar.ts"></script>
+    <script type="module" src="/assets/scripts/display.ts"></script>
   </head>
   <body>
     <app-navbar></app-navbar>
 
     <div id="ride-container"></div>
 
-    <script src="/assets/scripts/index.ts"></script>
-    <script src="/assets/scripts/rides/ride_details.ts"></script>
-    <script>
-      setupOnDataLoad(data => {
-        const ride = getRideDetails(data);
-        createRideDetails(ride, 'ride-container');
-      });
-    </script>
+    <script type="module" src="/assets/scripts/rides/ride_details.ts"></script>
   </body>
 </html>

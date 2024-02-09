@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="/assets/styles/layout.css" />
     <link rel="stylesheet" href="/assets/styles/account/sign_up.css" />
     <script type="module" src="/components/navbar.ts"></script>
+    <script type="module" src="/assets/scripts/display.ts"></script>
 </head>
 <body>
     <app-navbar></app-navbar>
-    <form class="signup-form" id="signUpForm">
+    <form class="signup-form" id="signup-form">
       <label for="signup-username">Username:</label>
       <input type="text" id="signup-username" name="username" placeholder="Choose a username" required>
       <br>
@@ -25,8 +26,7 @@
       <label for="confirm-password">Confirm Password:</label>
       <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
       <br>
-      <button type="button" onclick="signUpUser()">Sign Up</button>
+      <button type="button">Sign Up</button>
     </form>
-    <script src="/assets/scripts/index.ts"></script>
-    <script src="/assets/scripts/account/sign_up.ts"></script>
+    <script type="module" src="/assets/scripts/account/sign_up.ts"></script>
 </html>

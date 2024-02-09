@@ -75,3 +75,24 @@
 .restaurant-menu hr {
   width: 95%;
 }
+
+.order-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.order-button {
+  display: inline-block;
+  background-color: var(--color-accent1);
+  color: var(--color-white);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: var(--fot-size1);
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.order-button:hover {
+  background-color: var(--color-accent2);
+}

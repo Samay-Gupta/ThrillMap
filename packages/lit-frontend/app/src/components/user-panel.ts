@@ -43,14 +43,14 @@ const loggedInTemplate = (userData: UserData, darkModeEnabled: boolean) => {
     <ul>
       <li><a href="/account/profile.html" class="user-option">Profile</a></li>
       <li><a href="/account/settings.html" class="user-option">Settings</a></li>
-      <li><a href="/account/logout.html" class="user-option">Logout</a></li>
+      <li><a href="/account/profile.html?logout=true" class="user-option">Logout</a></li>
       ${displayPreferenceTemplate(darkModeEnabled)}
     </ul>
   `;
 };
 
 const userPanelTemplate = (darkModeEnabled: boolean, userData: UserData) => {
-  if (userData) {
+  if (Session.isLoggedIn()) {
     return loggedInTemplate(userData, darkModeEnabled);
   }
   return html`

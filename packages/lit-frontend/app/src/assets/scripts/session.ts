@@ -35,6 +35,19 @@ class Session {
 
   static logoutUser() {
     this.deleteCookie('auth-key');
+    this.deleteCookie('user-name');
+    this.deleteCookie('user-email');
+  }
+
+  static loginUser(loginDetails) {
+    this.setCookie('auth-key', '1234567890', 7);
+    this.setCookie('user-name', 'John Doe', 7);
+    this.setCookie('user-email', 'johndoe@gmail.com', 7);
+    window.location.href = '/';
+  }
+
+  static signUpUser(signUpDetails) {
+    this.loginUser({});
   }
 }
 

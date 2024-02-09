@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="/assets/styles/rides/index.css" />
     <script type="module" src="/components/navbar.ts"></script>
     <script type="module" src="/components/card.ts"></script>
+    <script type="module" src="/assets/scripts/display.ts"></script>
   </head>
   <body>
     <app-navbar></app-navbar>
 
     <div class="ride-container">
       <app-card
-        href="/rides/thrill/"
+        href="/rides/ride_list.html?category=thrill"
         cardHeight="70vh"
         cardTitle="Thrill Rides"
         cardContent="Exciting rides with high speeds and steep drops."
@@ -26,7 +27,7 @@
       >
       </app-card>
       <app-card
-        href="/rides/water/"
+        href="/rides/ride_list.html?category=water"
         cardHeight="70vh"
         cardTitle="Water Rides"
         cardContent="Refreshing aquatic adventures for all ages."
@@ -36,7 +37,7 @@
       >
       </app-card>
       <app-card
-        href="/rides/family/"
+        href="/rides/ride_list.html?category=family"
         cardHeight="70vh"
         cardTitle="Family Rides"
         cardContent="Enjoyable rides perfect for family fun."
@@ -46,7 +47,5 @@
       >
       </app-card>
     </div>
-
-    <script src="/assets/scripts/index.ts"></script>
   </body>
 </html>

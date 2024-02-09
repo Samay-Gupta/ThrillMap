@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="/assets/styles/layout.css" />
     <link rel="stylesheet" href="/assets/styles/account/login.css" />
     <script type="module" src="/components/navbar.ts"></script>
+    <script type="module" src="/assets/scripts/display.ts"></script>
 </head>
 <body>
     <app-navbar></app-navbar>
-    <form class="login-form" id="loginForm">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" placeholder="Enter username" required>
-      <br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" placeholder="Enter password" required>
-      <br>
-      <button type="button" onclick="loginUser()">Login</button>
+    <form class="login-form" id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+        <br>
+        <button type="button">Login</button>
     </form>
-    <script src="/assets/scripts/index.ts"></script>
-    <script src="/assets/scripts/account/login.ts"></script>
+    <script type="module" src="/assets/scripts/account/login.ts"></script>
 </body>
 </html>

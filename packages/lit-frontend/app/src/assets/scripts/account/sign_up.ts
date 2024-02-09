@@ -1,3 +1,5 @@
+import Session from "../session";
+
 function signUpUser(): void {
     const username = (document.getElementById('signup-username') as HTMLInputElement)?.value;
     const email = (document.getElementById('signup-email') as HTMLInputElement)?.value;
@@ -15,5 +17,17 @@ function signUpUser(): void {
         password
     };
 
-    mockLogin();
+    Session.signUpUser(signUpDetails);
 }
+
+function loadPage() {
+    if (Session.isLoggedIn()) {
+        window.location.href = '/';
+    }
+    const signUpButton = document.querySelector('#signup-form > button') as HTMLButtonElement;
+    signUpButton.addEventListener("click", signUpUser);
+}
+
+loadPage();
+
+loadPage();
