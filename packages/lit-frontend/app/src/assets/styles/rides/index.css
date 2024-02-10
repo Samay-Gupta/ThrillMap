@@ -10,3 +10,22 @@
 .ride-container > app-card {
   flex: 0 1 calc(33% - 10px);
 }
+
+.view-all-link {
+  background-color: var(--color-accent4);
+  display: inline-block;
+  font-size: var(--font-size2);
+  padding: 12px 24px;
+  text-decoration: none;
+  color: var(--color-white);
+  font-weight: 700;
+  border-radius: 8px;
+  margin: 0 10px;
+  transition: var(--transition-focus);
+  box-shadow: var(--box-shadow1);
+}
+
+.view-all-link:hover {
+  transform: var(--transition-hover);
+  box-shadow: var(--box-shadow2);
+}

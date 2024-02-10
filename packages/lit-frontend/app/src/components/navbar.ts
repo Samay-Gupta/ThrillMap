@@ -9,9 +9,18 @@ const getNavElement = (name, href, activePath) => {
 };
 
 const navbarTemplate = (navPages, activePath) => {
-  const profileIcon = html`<svg class="profile-icon">
-    <use href="/assets/icons/icons.svg#icon-profile" />
-  </svg>`;
+  const profileSrc = JSON.parse(
+    localStorage.getItem('user') || '{}'
+  ).profileImageURL;
+  const profileIcon = profileSrc
+    ? html`
+        <img class="profile-image" src="${profileSrc}" alt="Profile Image" />
+      `
+    : html`
+        <svg class="profile-icon">
+          <use href="/assets/icons/icons.svg#icon-profile" />
+        </svg>
+      `;
   return html`
     <div class="navbar">
       <div>
@@ -83,9 +92,17 @@ const navbarStyles = css`
     cursor: pointer;
     width: 48px;
     height: 48px;
+    border-radius: 50%;
     background: none;
     -webkit-filter: var(--invert); /* safari 6.0 - 9.0 */
     filter: var(--invert);
+  }
+
+  .profile-image {
+    cursor: pointer;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
   }
 `;
 

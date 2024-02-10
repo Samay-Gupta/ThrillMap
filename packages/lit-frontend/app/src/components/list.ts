@@ -171,7 +171,7 @@ const listStyles = css`
     }
     
     .select-filter {
-        padding: 8px 12px;
+        padding: 8px 24px 8px 12px;
         border: 1px solid var(--color-gray1);
         border-radius: 10px;
         outline: none;
@@ -216,10 +216,6 @@ class List extends LitElement {
 
   updateFilter(e: Event) {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
-    if (target.name === 'reverse') {
-      this.filter.reverse = !this.filter.reverse;
-      target.classList.toggle('rotated', this.filter.reverse);
-    }
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     this.filter = { ...this.filter, [name]: value };

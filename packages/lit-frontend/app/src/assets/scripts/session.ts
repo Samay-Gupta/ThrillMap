@@ -1,3 +1,5 @@
+import { ThrillMapAPI } from '/assets/scripts/api';
+
 class Session {
   static getCookie(id) {
     id = id + '=';
@@ -29,25 +31,27 @@ class Session {
   }
 
   static isLoggedIn() {
-    let authKey = this.getCookie('auth-key');
+    let authKey = this.getCookie('authKey');
     return authKey && authKey !== '';
   }
 
   static logoutUser() {
-    this.deleteCookie('auth-key');
-    this.deleteCookie('user-name');
-    this.deleteCookie('user-email');
+    this.deleteCookie('authKey');
+    localStorage.removeItem('user');
   }
 
   static loginUser(loginDetails) {
-    this.setCookie('auth-key', '1234567890', 7);
-    this.setCookie('user-name', 'John Doe', 7);
-    this.setCookie('user-email', 'johndoe@gmail.com', 7);
-    window.location.href = '/';
+    ThrillMapAPI.loginUser(loginDetails).then(authKey => {
+      this.setCookie('authKey', authKey, 7);
+      ThrillMapAPI.getProfile().then(profile => {
+        localStorage.setItem('user', JSON.stringify(profile));
+        window.location.href = '/';
+      });
+    });
   }
 
   static signUpUser(signUpDetails) {
-    this.loginUser({});
+    this.loginUser(signUpDetails);
   }
 }
 

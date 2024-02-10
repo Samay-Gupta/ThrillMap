@@ -3,29 +3,21 @@ import { customElement, property } from 'lit/decorators.js';
 
 import Session from '../assets/scripts/session';
 
-function toggleDisplayMode(darkModeEnabled: boolean) {
-  darkModeEnabled = !darkModeEnabled;
-  const rootHTML = document.getElementsByTagName('html')[0];
-  rootHTML.className = darkModeEnabled ? 'dark-mode' : 'light-mode';
-  Session.setCookie('dark-mode', darkModeEnabled.toString(), 7);
-}
+import Profile from '/data/models/profile';
 
-interface UserData {
-  name: string;
-  email: string;
-}
-
-const displayPreferenceTemplate = (darkModeEnabled: boolean) => {
-  const currentMode = darkModeEnabled ? 'dark' : 'light';
+const displayPreferenceTemplate = (instance: UserPanel, preferences: any) => {
   const toggle = () => {
-    toggleDisplayMode(darkModeEnabled);
-    darkModeEnabled = !darkModeEnabled;
+    preferences.darkMode = !preferences.darkMode;
+    (document.querySelector('html') as HTMLElement).className =
+      preferences.darkMode ? 'dark-mode' : 'light-mode';
+    localStorage.setItem('preferences', JSON.stringify(preferences));
+    instance.requestUpdate();
   };
   return html`
     <div class="toggle-container">
       <label class="toggle-switch" @change="${toggle}">
-        <input type="checkbox" ?checked=${darkModeEnabled} />
-        <span class="toggle-slider ${currentMode}">
+        <input type="checkbox" ?checked=${preferences.darkMode} />
+        <span class="toggle-slider">
           <span class="toggle-icon-light">🔆</span>
           <span class="toggle-icon-dark">&nbsp;🌙</span>
         </span>
@@ -34,24 +26,32 @@ const displayPreferenceTemplate = (darkModeEnabled: boolean) => {
   `;
 };
 
-const loggedInTemplate = (userData: UserData, darkModeEnabled: boolean) => {
-  return html`
-    <div class="user-badge">
-      <div class="user-name">${userData.name}</div>
-      <div class="user-email">${userData.email}</div>
-    </div>
-    <ul>
-      <li><a href="/account/profile.html" class="user-option">Profile</a></li>
-      <li><a href="/account/settings.html" class="user-option">Settings</a></li>
-      <li><a href="/account/profile.html?logout=true" class="user-option">Logout</a></li>
-      ${displayPreferenceTemplate(darkModeEnabled)}
-    </ul>
-  `;
-};
-
-const userPanelTemplate = (darkModeEnabled: boolean, userData: UserData) => {
+const userPanelTemplate = (
+  instance: UserPanel,
+  profile: Profile,
+  preferences: any
+) => {
   if (Session.isLoggedIn()) {
-    return loggedInTemplate(userData, darkModeEnabled);
+    return html`
+      <div class="user-badge">
+        <div class="user-name">
+          ${profile.firstName}&nbsp;${profile.lastName}
+        </div>
+        <div class="user-email">${profile.email}</div>
+      </div>
+      <ul>
+        <li><a href="/account/profile.html" class="user-option">Profile</a></li>
+        <li>
+          <a href="/account/settings.html" class="user-option">Settings</a>
+        </li>
+        <li>
+          <a href="/account/profile.html?logout=true" class="user-option"
+            >Logout</a
+          >
+        </li>
+        ${displayPreferenceTemplate(instance, preferences)}
+      </ul>
+    `;
   }
   return html`
     <ul>
@@ -59,7 +59,7 @@ const userPanelTemplate = (darkModeEnabled: boolean, userData: UserData) => {
       <li>
         <a href="/account/sign_up.html" class="user-option">Sign&nbsp;Up</a>
       </li>
-      ${displayPreferenceTemplate(darkModeEnabled)}
+      ${displayPreferenceTemplate(instance, preferences)}
     </ul>
   `;
 };
@@ -193,27 +193,18 @@ const userPanelStyles = css`
   }
 `;
 
-const getUserData = () => {
-  if (Session.isLoggedIn()) {
-    return {
-      name: Session.getCookie('user-name'),
-      email: Session.getCookie('user-email'),
-    } as UserData;
-  }
-};
-
 @customElement('user-panel')
 class UserPanel extends LitElement {
   @property({ type: Object })
-  userData?: UserData = getUserData();
+  profile?: profile = JSON.parse(
+    localStorage.getItem('user') ?? '{}'
+  ) as Profile;
 
-  @property({ type: Boolean })
-  darkModeEnabled = document
-    .getElementsByTagName('html')[0]
-    .classList.contains('dark-mode');
+  @property({ type: Object })
+  preferences = JSON.parse(localStorage.getItem('preferences') ?? '{}');
 
   render() {
-    return userPanelTemplate(this.darkModeEnabled, this.userData);
+    return userPanelTemplate(this, this.profile, this.preferences);
   }
 
   static styles = userPanelStyles;

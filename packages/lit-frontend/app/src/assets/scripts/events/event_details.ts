@@ -1,9 +1,11 @@
-import { ThrillMapAPI, getURLParams } from "../api";
-import { Event } from "../models/event";
+import { ThrillMapAPI, getURLParams } from '/assets/scripts/api';
+import { Event } from '/data/models/event';
 
 function createEventDetails(event) {
-  const eventDetailsContainer = document.getElementById('event-container') as HTMLElement;
-  
+  const eventDetailsContainer = document.getElementById(
+    'event-container'
+  ) as HTMLElement;
+
   eventDetailsContainer.innerHTML = `
     <div class="event-div">
       <img src="${event.imageURL}" alt="${event.name}" class="event-image" />
@@ -15,13 +17,12 @@ function createEventDetails(event) {
   `;
 }
 
-
 function loadPage() {
   const params = getURLParams();
 
   ThrillMapAPI.getEvents(params).then((eventList: [Event]) => {
     if (!eventList) {
-      return window.location.href = '/events/';
+      return (window.location.href = '/events/');
     }
     const event = eventList[0];
     createEventDetails(event);

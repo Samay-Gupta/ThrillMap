@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
@@ -10,18 +10,30 @@
     <link rel="stylesheet" href="/assets/styles/account/login.css" />
     <script type="module" src="/components/navbar.ts"></script>
     <script type="module" src="/assets/scripts/display.ts"></script>
-</head>
-<body>
+  </head>
+  <body>
     <app-navbar></app-navbar>
     <form class="login-form" id="login-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter password" required>
-        <br>
-        <button type="button">Login</button>
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+        required
+      />
+      <br />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+        required
+      />
+      <br />
+      <button type="button">Login</button>
     </form>
     <script type="module" src="/assets/scripts/account/login.ts"></script>
-</body>
+  </body>
 </html>

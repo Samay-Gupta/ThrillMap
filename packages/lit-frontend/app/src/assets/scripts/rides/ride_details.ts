@@ -1,10 +1,15 @@
-import { ThrillMapAPI, getURLParams } from "../api";
-import { Ride } from "../models/ride";
+import { ThrillMapAPI, getURLParams } from '/assets/scripts/api';
+import { Ride } from '/data/models/ride';
 
 function createRideDetails(ride: Ride) {
-  const rideContainer = document.getElementById('ride-container') as HTMLElement;
+  const rideContainer = document.getElementById(
+    'ride-container'
+  ) as HTMLElement;
 
-  const rideMinHeightHTML = ride.minHeight === 0 ? '' : `
+  const rideMinHeightHTML =
+    ride.minHeight === 0
+      ? ''
+      : `
   <div class="ride-details-section">
     <svg class="icon"><use href="/assets/icons/icons.svg#icon-min-height"></use></svg>
     <span class="ride-details-text">Min Height: ${ride.minHeight}in</span>
@@ -19,7 +24,7 @@ function createRideDetails(ride: Ride) {
         ${rideMinHeightHTML}
         <div class="ride-details-section">
           <svg class="icon"><use href="/assets/icons/icons.svg#icon-duration"></use></svg>
-          <span class="ride-details-text">Duration: ${ride.duration}</span>
+          <span class="ride-details-text">Duration: ${ride.duration}s</span>
         </div>
       </div>
     </div>
@@ -31,7 +36,7 @@ function loadPage() {
 
   ThrillMapAPI.getRides(params).then((rideList: [Ride]) => {
     if (!rideList) {
-      return window.location.href = '/rides/ride_list.html';
+      return (window.location.href = '/rides/ride_list.html');
     }
     const ride = rideList[0];
     createRideDetails(ride);

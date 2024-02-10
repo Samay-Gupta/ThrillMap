@@ -4,7 +4,7 @@ import { Event } from '/data/models/Event.ts';
 
 function loadPage() {
   const params = getURLParams();
-  
+
   const appListElement = document.querySelector('app-list') as ListElement;
   ThrillMapAPI.getEvents(params).then((eventList: [Event]) => {
     appListElement.listTitle = '';

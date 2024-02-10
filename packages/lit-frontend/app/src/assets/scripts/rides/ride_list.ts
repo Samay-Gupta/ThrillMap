@@ -19,11 +19,11 @@ function RideToListData(rideData: Ride): ListDataElement {
 function loadPage() {
   const params = getURLParams();
 
-  const title = `${params.category? capitalize(params.category): 'All'} Rides`
+  const title = `${params.category ? capitalize(params.category) : 'All'} Rides`;
 
   const pageTitleElement = document.querySelector('title') as HTMLTitleElement;
   pageTitleElement.text = title;
-  
+
   const appListElement = document.querySelector('app-list') as ListElement;
   ThrillMapAPI.getRides(params).then((rideList: [Ride]) => {
     appListElement.listTitle = title;
