@@ -13,6 +13,38 @@
   </head>
   <body>
     <app-navbar></app-navbar>
+    <form>
+      <button type="button" id="change-password" style="">Change Password</button>
+      <div id="password-container" style="display: none;">
+        <label for="current-password">Current Password:</label>
+        <input
+          type="password"
+          id="current-password"
+          name="currentPassword"
+          placeholder="Enter your current password"
+          required
+        />
+        <br />
+        <label for="profile-password">Password:</label>
+        <input
+          type="password"
+          id="profile-password"
+          name="password"
+          placeholder="Create a password"
+          required
+        />
+        <br />
+        <label for="confirm-password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirmPassword"
+          placeholder="Confirm your password"
+          required
+        />
+        <br />
+      </div>
+    </form>
     <script type="module" src="/assets/scripts/account/settings.ts"></script>
   </body>
 </html>
