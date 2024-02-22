@@ -1,52 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="light-mode">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>ThrillMap</title>
+
     <link rel="stylesheet" href="/assets/styles/reset.css" />
     <link rel="stylesheet" href="/assets/styles/tokens.css" />
     <link rel="stylesheet" href="/assets/styles/layout.css" />
-    <link rel="stylesheet" href="/assets/styles/index.css" />
-    <script type="module" src="/components/navbar.ts"></script>
-    <script type="module" src="/components/card.ts"></script>
-    <script type="module" src="/assets/scripts/display.ts"></script>
+
+    <script type="module" src="/views/thrill-map-app.ts"></script>
   </head>
   <body>
-    <app-navbar></app-navbar>
-    <div class="navigation-cards">
-      <app-card
-        href="/rides/"
-        cardTitle="🎢 Rides"
-        cardContent="Discover thrilling rides, roller coasters, and family-friendly attractions."
-        cardBackground="var(--color-accent1)"
-        cardTextColor="var(--color-white)"
-      >
-      </app-card>
-      <app-card
-        href="/dining/"
-        cardTitle="🍴 Dining"
-        cardContent="Enjoy a variety of dining options, from fast food to fine dining."
-        cardBackground="var(--color-accent2)"
-        cardTextColor="var(--color-white)"
-      >
-      </app-card>
-      <app-card
-        href="/events/"
-        cardTitle="📅 Events"
-        cardContent="Join us for exciting events, shows, and seasonal celebrations."
-        cardBackground="var(--color-accent3)"
-        cardTextColor="var(--color-white)"
-      >
-      </app-card>
-      <app-card
-        href="/map/"
-        cardTitle="🏞️ Park Map"
-        cardContent="Take a look at the entire park at a glance."
-        cardBackground="var(--color-accent4)"
-        cardTextColor="var(--color-white)"
-      >
-      </app-card>
-    </div>
+    <thrill-map-app></thrill-map-app>
   </body>
 </html>

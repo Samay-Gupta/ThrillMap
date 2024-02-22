@@ -13,13 +13,17 @@ function loadPage() {
     window.location.href = '/';
   }
   ThrillMapAPI.getProfile().then(profile => {
-    const container = document.getElementById('profile-container') as HTMLElement;
+    const container = document.getElementById(
+      'profile-container'
+    ) as HTMLElement;
 
     const orders = profile.orders.map((order: any) => order);
-    const ordersContent = profile.orders.length > 0
-      ? orders.map(order => {
-        order = JSON.parse(order) as Order;
-        return `
+    const ordersContent =
+      profile.orders.length > 0
+        ? orders
+            .map(order => {
+              order = JSON.parse(order) as Order;
+              return `
           <app-card
             href="/dining/"
             cardHeight="10vh"
@@ -27,9 +31,10 @@ function loadPage() {
             cardBackground="var(--color-background-primary)"
             cardTextColor="var(--color-primary)"
           ></app-card>
-        `
-    }).join('')
-      : '<div>No orders found</div>';
+        `;
+            })
+            .join('')
+        : '<div>No orders found</div>';
 
     const profileHTML = `
     <div class="profile-container" onclick="window.location.href='/account/edit-profile.html';">

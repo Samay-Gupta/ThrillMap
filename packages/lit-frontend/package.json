@@ -2,7 +2,7 @@
   "name": "lit-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "app/src/index.html",
+  "main": "app/src/index.ts",
   "scripts": {
     "dev": "npx vite",
     "build": "npx tsc && npx vite build",
@@ -17,6 +17,9 @@
     "vite-plugin-string": "^1.2.3"
   },
   "dependencies": {
-    "lit": "^3.1.1"
+    "@lit/context": "^1.1.0",
+    "@vaadin/router": "^1.7.5",
+    "lit": "^3.1.1",
+    "thrill-map-models": "^1.0.0"
   }
 }

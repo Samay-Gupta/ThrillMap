@@ -3,12 +3,12 @@ import { customElement, property } from 'lit/decorators.js';
 
 import Session from '../assets/scripts/session';
 
-import Profile from '/data/models/profile';
+import { Profile } from 'thrill-map-models';
 
 const displayPreferenceTemplate = (instance: UserPanel, preferences: any) => {
   const toggle = () => {
     preferences.darkMode = !preferences.darkMode;
-    (document.querySelector('html') as HTMLElement).className =
+    (document.querySelector('html') as HTMLHtmlElement).className =
       preferences.darkMode ? 'dark-mode' : 'light-mode';
     localStorage.setItem('preferences', JSON.stringify(preferences));
     instance.requestUpdate();

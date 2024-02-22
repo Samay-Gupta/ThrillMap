@@ -6,19 +6,3 @@ body {
   align-items: center;
   justify-content: flex-start;
 }
-
-.bg-accent1 {
-  background-color: var(--color-accent1);
-}
-
-.bg-accent2 {
-  background-color: var(--color-accent2);
-}
-
-.bg-accent3 {
-  background-color: var(--color-accent3);
-}
-
-.bg-accent4 {
-  background-color: var(--color-accent4);
-}

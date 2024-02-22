@@ -1,5 +1,5 @@
 import { css, html, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import './drop-down';
 import './user-panel';
 
@@ -127,6 +127,7 @@ class Navbar extends LitElement {
     ['Park Map', '/map/'],
   ];
 
+  @property({ type: String })
   activePath = getPath(this.navPages);
 
   render() {

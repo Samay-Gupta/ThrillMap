@@ -103,30 +103,39 @@ export class ThrillMapAPI {
 
   static async updateProfile(profile: Partial<Profile>) {
     const authKey = Session.getCookie('authKey');
-    const response = await fetch(`${API_ROOT}/profile/edit?authKey=${authKey}`, {
-      method: 'POST',
-      body: JSON.stringify(profile),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await fetch(
+      `${API_ROOT}/profile/edit?authKey=${authKey}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(profile),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     if (response.status === 200) {
-      localStorage.setItem('user', JSON.stringify({
-        ...JSON.parse(localStorage.getItem('user') as string),
-        ...profile
-      }));
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          ...JSON.parse(localStorage.getItem('user') as string),
+          ...profile,
+        })
+      );
     }
   }
 
   static async createOrder(order: Order) {
     const authKey = Session.getCookie('authKey');
-    const response = await fetch(`${API_ROOT}/dining/orders/new?authKey=${authKey}`, {
-      method: 'POST',
-      body: JSON.stringify(order),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await fetch(
+      `${API_ROOT}/dining/orders/new?authKey=${authKey}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(order),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     return await response.json();
   }
 }

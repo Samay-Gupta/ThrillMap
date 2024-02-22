@@ -11,9 +11,15 @@ function loadPage() {
     Session.logoutUser();
     window.location.href = '/';
   }
-  const firstNameField = document.getElementById('profile-first-name') as HTMLInputElement;
-  const lastNameField = document.getElementById('profile-last-name') as HTMLInputElement;
-  const emailField = document.getElementById('profile-email') as HTMLInputElement;
+  const firstNameField = document.getElementById(
+    'profile-first-name'
+  ) as HTMLInputElement;
+  const lastNameField = document.getElementById(
+    'profile-last-name'
+  ) as HTMLInputElement;
+  const emailField = document.getElementById(
+    'profile-email'
+  ) as HTMLInputElement;
   ThrillMapAPI.getProfile().then(profile => {
     firstNameField.value = profile.firstName;
     lastNameField.value = profile.lastName;
@@ -23,19 +29,24 @@ function loadPage() {
     '#profile-form > button'
   ) as HTMLButtonElement;
   saveChangesButton.addEventListener('click', () => {
-      const firstNameField = document.getElementById('profile-first-name') as HTMLInputElement;
-      const lastNameField = document.getElementById('profile-last-name') as HTMLInputElement;
-      const emailField = document.getElementById('profile-email') as HTMLInputElement;
-      const form = {
-        firstName: firstNameField.value,
-        lastName: lastNameField.value,
-        email: emailField.value
-      };
-      ThrillMapAPI.updateProfile(form).then(() => {
-        window.location.href = '/account/profile.html';
-      });
-    }
-  );
+    const firstNameField = document.getElementById(
+      'profile-first-name'
+    ) as HTMLInputElement;
+    const lastNameField = document.getElementById(
+      'profile-last-name'
+    ) as HTMLInputElement;
+    const emailField = document.getElementById(
+      'profile-email'
+    ) as HTMLInputElement;
+    const form = {
+      firstName: firstNameField.value,
+      lastName: lastNameField.value,
+      email: emailField.value,
+    };
+    ThrillMapAPI.updateProfile(form).then(() => {
+      window.location.href = '/account/profile.html';
+    });
+  });
 }
 
 loadPage();
