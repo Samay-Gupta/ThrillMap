@@ -5,64 +5,9 @@ import Session from '../assets/scripts/session';
 
 import { Profile } from 'thrill-map-models';
 
-const displayPreferenceTemplate = (instance: UserPanel, preferences: any) => {
-  const toggle = () => {
-    preferences.darkMode = !preferences.darkMode;
-    (document.querySelector('html') as HTMLHtmlElement).className =
-      preferences.darkMode ? 'dark-mode' : 'light-mode';
-    localStorage.setItem('preferences', JSON.stringify(preferences));
-    instance.requestUpdate();
-  };
-  return html`
-    <div class="toggle-container">
-      <label class="toggle-switch" @change="${toggle}">
-        <input type="checkbox" ?checked=${preferences.darkMode} />
-        <span class="toggle-slider">
-          <span class="toggle-icon-light">🔆</span>
-          <span class="toggle-icon-dark">&nbsp;🌙</span>
-        </span>
-      </label>
-    </div>
-  `;
-};
-
-const userPanelTemplate = (
-  instance: UserPanel,
-  profile: Profile,
-  preferences: any
-) => {
-  if (Session.isLoggedIn()) {
-    return html`
-      <div class="user-badge">
-        <div class="user-name">
-          ${profile.firstName}&nbsp;${profile.lastName}
-        </div>
-        <div class="user-email">${profile.email}</div>
-      </div>
-      <ul>
-        <li><a href="/account/profile.html" class="user-option">Profile</a></li>
-        <li>
-          <a href="/account/settings.html" class="user-option">Settings</a>
-        </li>
-        <li>
-          <a href="/account/profile.html?logout=true" class="user-option"
-            >Logout</a
-          >
-        </li>
-        ${displayPreferenceTemplate(instance, preferences)}
-      </ul>
-    `;
-  }
-  return html`
-    <ul>
-      <li><a href="/account/login.html" class="user-option">Login</a></li>
-      <li>
-        <a href="/account/sign_up.html" class="user-option">Sign&nbsp;Up</a>
-      </li>
-      ${displayPreferenceTemplate(instance, preferences)}
-    </ul>
-  `;
-};
+import * as App from '/app';
+import { Router } from '@vaadin/router';
+import { PROFILE_KEY } from '../config/constants';
 
 const userPanelStyles = css`
   :host {
@@ -194,17 +139,75 @@ const userPanelStyles = css`
 `;
 
 @customElement('user-panel')
-class UserPanel extends LitElement {
-  @property({ type: Object })
-  profile?: profile = JSON.parse(
-    localStorage.getItem('user') ?? '{}'
-  ) as Profile;
+class UserPanel extends App.View {
+  @property()
+  get profile() {
+    return this.getFromModel<Profile>('profile');
+  }
 
   @property({ type: Object })
   preferences = JSON.parse(localStorage.getItem('preferences') ?? '{}');
 
   render() {
-    return userPanelTemplate(this, this.profile, this.preferences);
+    if (this.profile != null) {
+      return html`
+        <div class="user-badge">
+          <div class="user-name">
+            ${this.profile.firstName}&nbsp;${this.profile.lastName}
+          </div>
+          <div class="user-email">${this.profile.email}</div>
+        </div>
+        <ul>
+          <li><a href="/account/" class="user-option">Profile</a></li>
+          <li>
+            <a href="/account/settings/" class="user-option">Settings</a>
+          </li>
+          <li>
+            <a role="button" class="user-option" @click="${this.logoutUser}">Logout</a>
+          </li>
+          ${this.renderPreferences()}
+        </ul>
+      `;
+    }
+    return html`
+      <ul>
+        <li><a href="/account/login/" class="user-option">Login</a></li>
+        <li>
+          <a href="/account/signup/" class="user-option">Sign&nbsp;Up</a>
+        </li>
+        ${this.renderPreferences()}
+      </ul>
+    `;
+  }
+
+  renderPreferences() {
+    return html`
+    <div class="toggle-container">
+      <label class="toggle-switch" @change="${this.toggleDarkMode}">
+        <input type="checkbox" ?checked=${this.preferences.darkMode} />
+        <span class="toggle-slider">
+          <span class="toggle-icon-light">🔆</span>
+          <span class="toggle-icon-dark">&nbsp;🌙</span>
+        </span>
+      </label>
+    </div>
+  `
+  };
+
+  toggleDarkMode() {
+    this.preferences = {
+      ...this.preferences,
+      darkMode: !this.preferences.darkMode,
+    };
+    (document.querySelector('html') as HTMLHtmlElement).className =
+        this.preferences.darkMode ? 'dark-mode' : 'light-mode';
+      localStorage.setItem('preferences', JSON.stringify(this.preferences));
+  }
+
+  logoutUser() {
+    this.dispatchMessage({ type: 'LogoutUser' });
+    localStorage.removeItem(PROFILE_KEY);
+    Router.go('/');
   }
 
   static styles = userPanelStyles;

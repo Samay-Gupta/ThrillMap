@@ -8,6 +8,8 @@ import * as App from '/app';
 
 import '/components/thrill-map-router';
 import '/components/navbar';
+import { ThrillMapAPI } from '../services/thrill-map-api';
+import { updateProps } from '../app';
 
 @customElement('thrill-map-app')
 class ThrillMapApp extends App.Main {
@@ -15,7 +17,10 @@ class ThrillMapApp extends App.Main {
     super(update);
   }
 
-  render() {
+  render() {    
+    if (JSON.parse(localStorage.getItem('preferences') ?? '{}').darkMode) {
+      document.querySelector('html')?.classList.add('dark-mode')
+    }
     return html`
       <app-navbar></app-navbar>
       <thrill-map-router .routes=${AppRoutes}></thrill-map-router>

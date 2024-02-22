@@ -7,5 +7,5 @@ export interface Model {
   orders?: Order[];
   restaurants?: Restaurant[];
   rides?: Ride[];
-  user?: Profile;
+  profile?: Profile;
 }

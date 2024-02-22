@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { Restaurant, MenuItem } from "models/Restaurant";
+import { Restaurant, MenuItem } from "thrill-map-models";
 
 const RestaurantSchema = new Schema<Restaurant>(
     { 

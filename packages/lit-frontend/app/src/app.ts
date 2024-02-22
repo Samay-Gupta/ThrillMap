@@ -5,14 +5,24 @@ import * as MVU from './mvu';
 import { Model } from '/config/models';
 import { Message } from '/config/messages';
 
+import { PROFILE_KEY } from './config/constants';
+import { Profile } from 'thrill-map-models';
+
 export const context = createContext<Model>('ThrillMapModels');
+
+function getProfile(): Profile | null{
+  if (localStorage.getItem(PROFILE_KEY)) {
+    return JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}');
+  }
+  return null;
+}
 
 export const init: Model = {
   rides: [],
   events: [],
   orders: [],
   restaurants: [],
-  user: undefined,
+  profile: getProfile(),
 };
 
 export class Main

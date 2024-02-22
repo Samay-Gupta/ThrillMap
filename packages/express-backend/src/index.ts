@@ -6,6 +6,7 @@ import { RideView } from "./views/rides";
 import { DiningView } from "./views/dining";
 import { EventView } from "./views/events";
 import { ProfileView } from "./views/profile";
+import { AccountView } from "./views/account";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,6 +23,12 @@ app.post("/api/dining/orders/new", DiningView.createOrder);
 app.get("/api/dining/orders/get", DiningView.getOrder);
 
 app.get("/api/events", EventView.getEvents);
+
+app.post("/api/account/login", AccountView.login);
+
+app.get("/api/account/profile", AccountView.getProfile);
+
+
 
 app.get("/api/profile/get", ProfileView.getProfile);
 

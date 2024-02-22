@@ -1,38 +1,8 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import * as App from '/app';
 import './drop-down';
 import './user-panel';
-
-const getNavElement = (name, href, activePath) => {
-  let navbarClass = href === activePath ? 'navbar-item-active' : 'navbar-item';
-  return html`<a href="${href}" class="${navbarClass}">${name}</a>`;
-};
-
-const navbarTemplate = (navPages, activePath) => {
-  const profileSrc = JSON.parse(
-    localStorage.getItem('user') || '{}'
-  ).profileImageURL;
-  const profileIcon = profileSrc
-    ? html`
-        <img class="profile-image" src="${profileSrc}" alt="Profile Image" />
-      `
-    : html`
-        <svg class="profile-icon">
-          <use href="/assets/icons/icons.svg#icon-profile" />
-        </svg>
-      `;
-  return html`
-    <div class="navbar">
-      <div>
-        ${navPages.map(([name, href]) => getNavElement(name, href, activePath))}
-      </div>
-      <drop-down class="profile-dropdown">
-        <div>${profileIcon}</div>
-        <user-panel slot="menu"></user-panel>
-      </drop-down>
-    </div>
-  `;
-};
 
 const navbarStyles = css`
   .navbar {
@@ -118,7 +88,7 @@ const getPath = navPages => {
 };
 
 @customElement('app-navbar')
-class Navbar extends LitElement {
+class Navbar extends App.View {
   navPages = [
     ['Home', '/'],
     ['Rides', '/rides/'],
@@ -127,12 +97,44 @@ class Navbar extends LitElement {
     ['Park Map', '/map/'],
   ];
 
+  @property()
+  get profile() {
+    return this.getFromModel<Profile>('profile');
+  }
+
   @property({ type: String })
   activePath = getPath(this.navPages);
 
   render() {
-    return navbarTemplate(this.navPages, this.activePath);
+    const profileSrc = JSON.parse(
+      localStorage.getItem('user') || '{}'
+    ).profileImageURL;
+    const profileIcon = this.profile !== null
+      ? html`
+          <img class="profile-image" src="${this.profile.profileImageURL}" alt="Profile Image" />
+        `
+      : html`
+          <svg class="profile-icon">
+            <use href="/assets/icons/icons.svg#icon-profile" />
+          </svg>
+        `;
+    return html`
+      <div class="navbar">
+        <div>
+          ${this.navPages.map(([name, href]) => this.getNavElement(name, href, this.activePath))}
+        </div>
+        <drop-down class="profile-dropdown">
+          <div>${profileIcon}</div>
+          <user-panel slot="menu"></user-panel>
+        </drop-down>
+      </div>
+    `;
   }
+
+  getNavElement(name, href, activePath) {
+    let navbarClass = href === activePath ? 'navbar-item-active' : 'navbar-item';
+    return html`<a href="${href}" class="${navbarClass}">${name}</a>`;
+  };
 
   static styles = navbarStyles;
 }

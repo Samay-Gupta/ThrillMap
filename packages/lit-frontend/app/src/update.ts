@@ -5,9 +5,14 @@ import {
   RideFiltered,
   EventFiltered,
   RestaurantFiltered,
+  LoginUser,
+    SignUpUser,
+    ProfileUpdate
 } from './config/messages';
 
-import { Ride, Event, Restaurant } from 'thrill-map-models';
+import { AUTH_TOKEN_KEY } from './config/constants';
+
+import { Ride, Event, Restaurant, Profile } from 'thrill-map-models';
 
 import { ThrillMapAPI } from './services/thrill-map-api';
 
@@ -38,5 +43,38 @@ dispatch.addMessage('FilterEvent', (message: Message) => {
     return App.updateProps({ events: eventList });
   });
 });
+
+dispatch.addMessage('LoginUser', (message: Message) => {
+  const { loginForm } = message as LoginUser;
+
+  return ThrillMapAPI.loginUser(loginForm).then((profile: Profile | null) => {
+    if (profile) {
+    localStorage.setItem('profile', JSON.stringify(profile));
+    }
+    return App.updateProps({ profile: profile });
+  });
+});
+
+dispatch.addMessage('SignUpUser', (message: Message) => {
+    const { signUpForm } = message as SignUpUser;
+  
+    return ThrillMapAPI.signUpForm(signUpForm).then((profile: Profile | null) => {
+        if (profile) {
+      localStorage.setItem('profile', JSON.stringify(profile));
+        }
+      return App.updateProps({ profile: profile });
+    });
+  });
+
+dispatch.addMessage('LogoutUser', (message: Message) => {
+  localStorage.removeItem(AUTH_TOKEN_KEY);
+  return App.updateProps({ profile: null });
+});
+
+dispatch.addMessage('ProfileUpdate', (message: Message) => {
+    const { profileForm } = message as ProfileUpdate;
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    return App.updateProps({ profile: null });
+  });
 
 export default dispatch.update;

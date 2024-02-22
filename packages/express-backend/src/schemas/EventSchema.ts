@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { Event } from "models/Event";
+import { Event } from "thrill-map-models";
 
 const EventSchema = new Schema<Event>(
     { 

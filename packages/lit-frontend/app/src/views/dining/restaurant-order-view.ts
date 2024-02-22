@@ -1,7 +1,7 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Restaurant, RestaurantSearchProps } from 'thrill-map-models';
-import { ThrillMapAPI } from '/services/thrill-map-api';
+
 import * as App from '/app';
 
 const pageStyles = css`
@@ -135,6 +135,11 @@ class RestaurantOrderView extends App.View {
   }
 
   @property()
+  get profile() {
+    return this.getFromModel<Profile>('profile');
+  }
+
+  @property()
   get restaurantsList() {
     return this.getFromModel<Restaurant[]>('restaurants');
   }
@@ -153,8 +158,11 @@ class RestaurantOrderView extends App.View {
   }
 
   render() {
+    if (this.profile === null) {
+        Router.go('/account/login');
+    }
     if (!this.restaurantsList || this.restaurantsList.length === 0) {
-      return html``;
+      Router.go('/dining');
     }
     const restaurant = this.restaurantsList[0];
     return html`

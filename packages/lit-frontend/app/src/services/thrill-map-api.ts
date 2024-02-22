@@ -7,10 +7,11 @@ import {
   RestaurantSearchProps,
   MenuItem,
   Order,
+  Profile
 } from 'thrill-map-models';
+import { LoginForm, SignUpForm } from 'thrill-map-models';
 
-const API_ROOT = 'http://localhost:3000/api';
-const TOKEN_KEY = 'JWT_AUTH_TOKEN';
+import { AUTH_TOKEN_KEY, API_ROOT } from '/config/constants';
 
 function getURLSearchParams<T extends object>(params: T): string {
   const filters: string[] = [];
@@ -35,7 +36,15 @@ export function getURLParams(): Record<string, string> {
 }
 
 export class ThrillMapAPI {
-  static async getRides(params: RideSearchProps) {
+  static getRequestHeaders(): Record<string, string> {
+    const authToken = localStorage.getItem(AUTH_TOKEN_KEY);
+    return {
+      'Content-Type': 'application/json',
+      Authorization: authToken,
+    };
+  }
+
+  static async getRides(params: RideSearchProps): Promise<Ride[]> {
     const searchFilters = getURLSearchParams(params);
     const urlString = `${API_ROOT}/rides${searchFilters}`;
     const response = await fetch(urlString);
@@ -45,7 +54,7 @@ export class ThrillMapAPI {
     });
   }
 
-  static async getRestaurants(params: RestaurantSearchProps) {
+  static async getRestaurants(params: RestaurantSearchProps): Promise<Restaurant[]> {
     const restaurantFilters = getURLSearchParams(params);
     const urlString = `${API_ROOT}/dining${restaurantFilters}`;
     const response = await fetch(urlString);
@@ -61,7 +70,7 @@ export class ThrillMapAPI {
     });
   }
 
-  static async getEvents(params: EventSearchProps) {
+  static async getEvents(params: EventSearchProps): Promise<Event[]> {
     const eventFilters = getURLSearchParams(params);
     const urlString = `${API_ROOT}/events${eventFilters}`;
     const response = await fetch(urlString);
@@ -71,16 +80,59 @@ export class ThrillMapAPI {
     });
   }
 
+  static async loginUser(loginForm: LoginForm): Promise<Profile | null> {
+    const response = await fetch(`${API_ROOT}/account/login`, {
+      method: 'POST',
+      body: JSON.stringify(loginForm),
+      headers: ThrillMapAPI.getRequestHeaders(),
+    });
+    let userProfile: Profile | null = null;
+    if (response.status === 200) {
+      const authKey = (await response.json() ?? {}).authKey;
+      if (authKey) {
+        localStorage.setItem(AUTH_TOKEN_KEY, authKey);
+        userProfile = await ThrillMapAPI.getUser();
+      }
+    }
+    return userProfile
+  }
+
+  static async signUpUser(signUpForm: SignUpForm): Promise<Profile | null> {
+    const response = await fetch(`${API_ROOT}/account/signup`, {
+      method: 'POST',
+      body: JSON.stringify(signUpForm),
+      headers: ThrillMapAPI.getRequestHeaders(),
+    });
+    let userProfile: Profile | null = null;
+    if (response.status === 200) {
+      const authKey = (await response.json() ?? {}).authKey;
+      if (authKey) {
+        localStorage.setItem(AUTH_TOKEN_KEY, authKey);
+        userProfile = await ThrillMapAPI.getUser();
+      }
+    }
+    return userProfile
+  }
+
+  static async getUser(): Promise<Profile | null> {
+    const response = await fetch(`${API_ROOT}/account/profile`, {
+      method: 'GET',
+      headers: ThrillMapAPI.getRequestHeaders()
+    });
+    if (response.status === 200) {
+      return (await response.json()) as Profile;
+    }
+    return null;
+  }
+
   static async createOrder(order: Order) {
     const authKey = '';
     const response = await fetch(
-      `${API_ROOT}/dining/orders/new?authKey=${authKey}`,
+      `${API_ROOT}/dining/orders/new/`,
       {
         method: 'POST',
         body: JSON.stringify(order),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: ThrillMapAPI.getRequestHeaders(),
       }
     );
     return await response.json();

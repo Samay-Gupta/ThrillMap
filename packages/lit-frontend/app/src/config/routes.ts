@@ -1,6 +1,13 @@
 import { Route } from '@vaadin/router';
 
 import '/views/home-view';
+
+import '/views/account/login-view';
+import '/views/account/signup-view';
+import '/views/account/profile-view';
+import '/views/account/edit-profile-view';
+import '/views/account/settings-view';
+
 import '/views/rides/rides-navigation-view';
 import '/views/rides/rides-list-view';
 import '/views/rides/ride-details-view';
@@ -18,6 +25,26 @@ export const AppRoutes: Route[] = [
   {
     path: '/',
     component: 'home-view',
+  },
+  {
+    path: '/account/login/',
+    component: 'login-view',
+  },
+  {
+    path: '/account/signup/',
+    component: 'signup-view',
+  },
+  {
+    path: '/account/settings/',
+    component: 'settings-view',
+  },
+  {
+    path: '/account/edit/',
+    component: 'edit-profile-view',
+  },
+  {
+    path: '/account/',
+    component: 'profile-view',
   },
   {
     path: '/rides/',

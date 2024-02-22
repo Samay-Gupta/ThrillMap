@@ -1,5 +1,5 @@
-export interface Order {
-    restaurantId: string;
+export interface OrderForm {
+    restaurantName: string;
     desc: string;
     items: any[];
     total: number;

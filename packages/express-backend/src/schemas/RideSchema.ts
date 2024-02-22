@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { Ride } from "models/Ride";
+import { Ride } from "thrill-map-models";
 
 const RideSchema = new Schema<Ride>(
     { 

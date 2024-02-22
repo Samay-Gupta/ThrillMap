@@ -1,4 +1,4 @@
-import { Order } from "models/Order";
+import { Order } from "thrill-map-models";
 import { Schema } from "mongoose";
 
 const OrderSchema = new Schema<Order>({

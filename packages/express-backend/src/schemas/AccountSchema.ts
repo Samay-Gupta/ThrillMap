@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { Account } from "models/Account";
+import { Account } from "thrill-map-models";
 
 const AccountSchema = new Schema<Account>(
     { 
