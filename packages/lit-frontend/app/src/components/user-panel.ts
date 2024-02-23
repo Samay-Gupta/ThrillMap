@@ -163,7 +163,9 @@ class UserPanel extends App.View {
             <a href="/account/settings/" class="user-option">Settings</a>
           </li>
           <li>
-            <a role="button" class="user-option" @click="${this.logoutUser}">Logout</a>
+            <a role="button" class="user-option" @click="${this.logoutUser}"
+              >Logout</a
+            >
           </li>
           ${this.renderPreferences()}
         </ul>
@@ -182,26 +184,28 @@ class UserPanel extends App.View {
 
   renderPreferences() {
     return html`
-    <div class="toggle-container">
-      <label class="toggle-switch" @change="${this.toggleDarkMode}">
-        <input type="checkbox" ?checked=${this.preferences.darkMode} />
-        <span class="toggle-slider">
-          <span class="toggle-icon-light">🔆</span>
-          <span class="toggle-icon-dark">&nbsp;🌙</span>
-        </span>
-      </label>
-    </div>
-  `
-  };
+      <div class="toggle-container">
+        <label class="toggle-switch" @change="${this.toggleDarkMode}">
+          <input type="checkbox" ?checked=${this.preferences.darkMode} />
+          <span class="toggle-slider">
+            <span class="toggle-icon-light">🔆</span>
+            <span class="toggle-icon-dark">&nbsp;🌙</span>
+          </span>
+        </label>
+      </div>
+    `;
+  }
 
   toggleDarkMode() {
     this.preferences = {
       ...this.preferences,
       darkMode: !this.preferences.darkMode,
     };
-    (document.querySelector('html') as HTMLHtmlElement).className =
-        this.preferences.darkMode ? 'dark-mode' : 'light-mode';
-      localStorage.setItem('preferences', JSON.stringify(this.preferences));
+    (document.querySelector('html') as HTMLHtmlElement).className = this
+      .preferences.darkMode
+      ? 'dark-mode'
+      : 'light-mode';
+    localStorage.setItem('preferences', JSON.stringify(this.preferences));
   }
 
   logoutUser() {

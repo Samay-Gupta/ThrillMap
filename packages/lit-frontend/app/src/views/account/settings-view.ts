@@ -43,7 +43,9 @@ const settingsStyles = css`
     color: var(--color-white);
     cursor: pointer;
     font-size: var(--font-size2);
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
   }
 
   .settings-form button:hover,
@@ -79,40 +81,42 @@ class SettingsView extends App.View {
   render() {
     return html`
       <div class="settings-form">
-        ${
-            this.showPasswordChangeForm
-                ? html`
-                    <form class="password-form" @submit="${this.changePassword}">
-                    <label for="currentPassword">Current Password</label>
-                    <input
-                        type="password"
-                        id="currentPassword"
-                        name="currentPassword"
-                        .value="${this.passwordChangeForm.currentPassword}"
-                        @input="${this.updatePasswordForm}"
-                    />
-                    <label for="newPassword">New Password</label>
-                    <input
-                        type="password"
-                        id="newPassword"
-                        name="newPassword"
-                        .value="${this.passwordChangeForm.newPassword}"
-                        @input="${this.updatePasswordForm}"
-                    />
-                    <label for="confirmNewPassword">Confirm New Password</label>
-                    <input
-                        type="password"
-                        id="confirmNewPassword"
-                        name="confirmNewPassword"
-                        .value="${this.passwordChangeForm.confirmNewPassword}"
-                        @input="${this.updatePasswordForm}"
-                    />
-                    <button type="submit">Change Password</button>
-                    </form>
-                `
-                : html`
-                <button class="change-password-btn" @click="${this.togglePasswordChangeForm}">Change Password</button>`
-        }
+        ${this.showPasswordChangeForm
+          ? html`
+              <form class="password-form" @submit="${this.changePassword}">
+                <label for="currentPassword">Current Password</label>
+                <input
+                  type="password"
+                  id="currentPassword"
+                  name="currentPassword"
+                  .value="${this.passwordChangeForm.currentPassword}"
+                  @input="${this.updatePasswordForm}"
+                />
+                <label for="newPassword">New Password</label>
+                <input
+                  type="password"
+                  id="newPassword"
+                  name="newPassword"
+                  .value="${this.passwordChangeForm.newPassword}"
+                  @input="${this.updatePasswordForm}"
+                />
+                <label for="confirmNewPassword">Confirm New Password</label>
+                <input
+                  type="password"
+                  id="confirmNewPassword"
+                  name="confirmNewPassword"
+                  .value="${this.passwordChangeForm.confirmNewPassword}"
+                  @input="${this.updatePasswordForm}"
+                />
+                <button type="submit">Change Password</button>
+              </form>
+            `
+          : html` <button
+              class="change-password-btn"
+              @click="${this.togglePasswordChangeForm}"
+            >
+              Change Password
+            </button>`}
       </div>
     `;
   }

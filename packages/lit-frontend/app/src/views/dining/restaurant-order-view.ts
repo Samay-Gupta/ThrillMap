@@ -159,7 +159,7 @@ class RestaurantOrderView extends App.View {
 
   render() {
     if (this.profile === null) {
-        Router.go('/account/login');
+      Router.go('/account/login');
     }
     if (!this.restaurantsList || this.restaurantsList.length === 0) {
       Router.go('/dining');

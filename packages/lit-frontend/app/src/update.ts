@@ -6,8 +6,8 @@ import {
   EventFiltered,
   RestaurantFiltered,
   LoginUser,
-    SignUpUser,
-    ProfileUpdate
+  SignUpUser,
+  ProfileUpdate,
 } from './config/messages';
 
 import { AUTH_TOKEN_KEY } from './config/constants';
@@ -49,22 +49,22 @@ dispatch.addMessage('LoginUser', (message: Message) => {
 
   return ThrillMapAPI.loginUser(loginForm).then((profile: Profile | null) => {
     if (profile) {
-    localStorage.setItem('profile', JSON.stringify(profile));
+      localStorage.setItem('profile', JSON.stringify(profile));
     }
     return App.updateProps({ profile: profile });
   });
 });
 
 dispatch.addMessage('SignUpUser', (message: Message) => {
-    const { signUpForm } = message as SignUpUser;
-  
-    return ThrillMapAPI.signUpForm(signUpForm).then((profile: Profile | null) => {
-        if (profile) {
+  const { signUpForm } = message as SignUpUser;
+
+  return ThrillMapAPI.signUpForm(signUpForm).then((profile: Profile | null) => {
+    if (profile) {
       localStorage.setItem('profile', JSON.stringify(profile));
-        }
-      return App.updateProps({ profile: profile });
-    });
+    }
+    return App.updateProps({ profile: profile });
   });
+});
 
 dispatch.addMessage('LogoutUser', (message: Message) => {
   localStorage.removeItem(AUTH_TOKEN_KEY);
@@ -72,9 +72,9 @@ dispatch.addMessage('LogoutUser', (message: Message) => {
 });
 
 dispatch.addMessage('ProfileUpdate', (message: Message) => {
-    const { profileForm } = message as ProfileUpdate;
-    localStorage.removeItem(AUTH_TOKEN_KEY);
-    return App.updateProps({ profile: null });
-  });
+  const { profileForm } = message as ProfileUpdate;
+  localStorage.removeItem(AUTH_TOKEN_KEY);
+  return App.updateProps({ profile: null });
+});
 
 export default dispatch.update;

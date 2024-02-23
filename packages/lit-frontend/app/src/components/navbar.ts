@@ -109,19 +109,26 @@ class Navbar extends App.View {
     const profileSrc = JSON.parse(
       localStorage.getItem('user') || '{}'
     ).profileImageURL;
-    const profileIcon = this.profile !== null
-      ? html`
-          <img class="profile-image" src="${this.profile.profileImageURL}" alt="Profile Image" />
-        `
-      : html`
-          <svg class="profile-icon">
-            <use href="/assets/icons/icons.svg#icon-profile" />
-          </svg>
-        `;
+    const profileIcon =
+      this.profile !== null
+        ? html`
+            <img
+              class="profile-image"
+              src="${this.profile.profileImageURL}"
+              alt="Profile Image"
+            />
+          `
+        : html`
+            <svg class="profile-icon">
+              <use href="/assets/icons/icons.svg#icon-profile" />
+            </svg>
+          `;
     return html`
       <div class="navbar">
         <div>
-          ${this.navPages.map(([name, href]) => this.getNavElement(name, href, this.activePath))}
+          ${this.navPages.map(([name, href]) =>
+            this.getNavElement(name, href, this.activePath)
+          )}
         </div>
         <drop-down class="profile-dropdown">
           <div>${profileIcon}</div>
@@ -132,9 +139,10 @@ class Navbar extends App.View {
   }
 
   getNavElement(name, href, activePath) {
-    let navbarClass = href === activePath ? 'navbar-item-active' : 'navbar-item';
+    let navbarClass =
+      href === activePath ? 'navbar-item-active' : 'navbar-item';
     return html`<a href="${href}" class="${navbarClass}">${name}</a>`;
-  };
+  }
 
   static styles = navbarStyles;
 }

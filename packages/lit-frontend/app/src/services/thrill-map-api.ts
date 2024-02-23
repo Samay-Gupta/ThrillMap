@@ -7,7 +7,7 @@ import {
   RestaurantSearchProps,
   MenuItem,
   Order,
-  Profile
+  Profile,
 } from 'thrill-map-models';
 import { LoginForm, SignUpForm } from 'thrill-map-models';
 
@@ -54,7 +54,9 @@ export class ThrillMapAPI {
     });
   }
 
-  static async getRestaurants(params: RestaurantSearchProps): Promise<Restaurant[]> {
+  static async getRestaurants(
+    params: RestaurantSearchProps
+  ): Promise<Restaurant[]> {
     const restaurantFilters = getURLSearchParams(params);
     const urlString = `${API_ROOT}/dining${restaurantFilters}`;
     const response = await fetch(urlString);
@@ -88,13 +90,13 @@ export class ThrillMapAPI {
     });
     let userProfile: Profile | null = null;
     if (response.status === 200) {
-      const authKey = (await response.json() ?? {}).authKey;
+      const authKey = ((await response.json()) ?? {}).authKey;
       if (authKey) {
         localStorage.setItem(AUTH_TOKEN_KEY, authKey);
         userProfile = await ThrillMapAPI.getUser();
       }
     }
-    return userProfile
+    return userProfile;
   }
 
   static async signUpUser(signUpForm: SignUpForm): Promise<Profile | null> {
@@ -105,19 +107,19 @@ export class ThrillMapAPI {
     });
     let userProfile: Profile | null = null;
     if (response.status === 200) {
-      const authKey = (await response.json() ?? {}).authKey;
+      const authKey = ((await response.json()) ?? {}).authKey;
       if (authKey) {
         localStorage.setItem(AUTH_TOKEN_KEY, authKey);
         userProfile = await ThrillMapAPI.getUser();
       }
     }
-    return userProfile
+    return userProfile;
   }
 
   static async getUser(): Promise<Profile | null> {
     const response = await fetch(`${API_ROOT}/account/profile`, {
       method: 'GET',
-      headers: ThrillMapAPI.getRequestHeaders()
+      headers: ThrillMapAPI.getRequestHeaders(),
     });
     if (response.status === 200) {
       return (await response.json()) as Profile;
@@ -127,14 +129,11 @@ export class ThrillMapAPI {
 
   static async createOrder(order: Order) {
     const authKey = '';
-    const response = await fetch(
-      `${API_ROOT}/dining/orders/new/`,
-      {
-        method: 'POST',
-        body: JSON.stringify(order),
-        headers: ThrillMapAPI.getRequestHeaders(),
-      }
-    );
+    const response = await fetch(`${API_ROOT}/dining/orders/new/`, {
+      method: 'POST',
+      body: JSON.stringify(order),
+      headers: ThrillMapAPI.getRequestHeaders(),
+    });
     return await response.json();
   }
 }

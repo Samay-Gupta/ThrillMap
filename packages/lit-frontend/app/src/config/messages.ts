@@ -1,4 +1,8 @@
-import { EventSearchProps, RestaurantSearchProps, RideSearchProps } from 'thrill-map-models';
+import {
+  EventSearchProps,
+  RestaurantSearchProps,
+  RideSearchProps,
+} from 'thrill-map-models';
 
 import { LoginForm, SignUpForm } from 'thrill-map-models';
 
@@ -29,20 +33,20 @@ export interface SignUpUser extends MessageType<'SignUpUser'> {
 export interface LogoutUser extends MessageType<'LogoutUser'> {}
 
 export interface ProfileUpdate extends MessageType<'ProfileUpdate'> {
-    profileForm: ProfileForm;
+  profileForm: ProfileForm;
 }
 
 export interface OrderUpdate extends MessageType<'OrderUpdate'> {
-    orderForm: OrderForm;
+  orderForm: OrderForm;
 }
 
-export type Message = 
-    | RideFiltered 
-    | RestaurantFiltered 
-    | EventFiltered 
-    | LoginUser 
-    | SignUpUser 
-    | LogoutUser
-    | ProfileUpdate;
+export type Message =
+  | RideFiltered
+  | RestaurantFiltered
+  | EventFiltered
+  | LoginUser
+  | SignUpUser
+  | LogoutUser
+  | ProfileUpdate;
 
 export type TypedMessage = MessageType<string>;

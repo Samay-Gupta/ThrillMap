@@ -17,9 +17,9 @@ class ThrillMapApp extends App.Main {
     super(update);
   }
 
-  render() {    
+  render() {
     if (JSON.parse(localStorage.getItem('preferences') ?? '{}').darkMode) {
-      document.querySelector('html')?.classList.add('dark-mode')
+      document.querySelector('html')?.classList.add('dark-mode');
     }
     return html`
       <app-navbar></app-navbar>

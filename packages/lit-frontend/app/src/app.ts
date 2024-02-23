@@ -10,7 +10,7 @@ import { Profile } from 'thrill-map-models';
 
 export const context = createContext<Model>('ThrillMapModels');
 
-function getProfile(): Profile | null{
+function getProfile(): Profile | null {
   if (localStorage.getItem(PROFILE_KEY)) {
     return JSON.parse(localStorage.getItem(PROFILE_KEY) ?? '{}');
   }

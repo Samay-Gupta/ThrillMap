@@ -1,71 +1,68 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app'
+import * as App from '/app';
 import { Router } from '@vaadin/router';
 
 import { LoginForm } from '/models/account';
 
 const pageStyles = css`
-.profile-form {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: var(--border1);
-  border-radius: 5px;
-  background-color: var(--color-background-secondary);
-  box-shadow: var(--box-shadow1);
-}
+  .profile-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: var(--border1);
+    border-radius: 5px;
+    background-color: var(--color-background-secondary);
+    box-shadow: var(--box-shadow1);
+  }
 
-.profile-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: var(--font-size2);
-  color: var(--color-gray3);
-}
+  .profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: var(--font-size2);
+    color: var(--color-gray3);
+  }
 
-.profile-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid var(--color-gray1);
-  border-radius: 4px;
-  background-color: var(--color-white);
-  color: var(--color-black);
-  box-sizing: border-box;
-}
+  .profile-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--color-gray1);
+    border-radius: 4px;
+    background-color: var(--color-white);
+    color: var(--color-black);
+    box-sizing: border-box;
+  }
 
-.profile-form button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--color-accent1);
-  color: var(--color-white);
-  cursor: pointer;
-  font-size: var(--font-size2);
-  transition:
-    var(--background-color-primary) 0.3s,
-    color 0.3s;
-}
+  .profile-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-accent1);
+    color: var(--color-white);
+    cursor: pointer;
+    font-size: var(--font-size2);
+    transition:
+      var(--background-color-primary) 0.3s,
+      color 0.3s;
+  }
 
-.profile-form button:hover {
-  background-color: var(--color-accent2);
-  color: var(--color-secondary);
-}
+  .profile-form button:hover {
+    background-color: var(--color-accent2);
+    color: var(--color-secondary);
+  }
 
-.profile-form input:focus,
-.profile-form button:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
+  .profile-form input:focus,
+  .profile-form button:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 `;
 
 @customElement('edit-profile-view')
 class EditProfileView extends App.View {
-    
-
   @property()
   get profile() {
     return this.getFromModel<Profile>('profile');
@@ -87,8 +84,11 @@ class EditProfileView extends App.View {
     if (this.profile === null) {
       Router.go('/login');
     }
-    return html`
-    <form class="profile-form" id="profile-form"  @submit="${this.updateProfile}">
+    return html` <form
+      class="profile-form"
+      id="profile-form"
+      @submit="${this.updateProfile}"
+    >
       <label for="profile-first-name">First Name:</label>
       <input
         type="text"
@@ -120,8 +120,7 @@ class EditProfileView extends App.View {
       />
       <br />
       <button type="submit">Save Changes</button>
-    </form>`
-    ;
+    </form>`;
   }
 
   handleInputChange(e) {
