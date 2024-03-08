@@ -112,13 +112,13 @@ class Navbar extends App.View {
         ? html`
             <img
               class="profile-image"
-              src="..${this.profile.profileImageURL}"
+              src="${this.profile.profileImageURL}"
               alt="Profile Image"
             />
           `
         : html`
             <svg class="profile-icon">
-              <use href="../assets/icons/icons.svg#icon-profile" />
+              <use href="/assets/icons/icons.svg#icon-profile" />
             </svg>
           `;
     return html`
