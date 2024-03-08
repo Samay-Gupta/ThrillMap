@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Events</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/reset.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/tokens.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/index.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/components/navbar.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/events/event_details.css">
+</head>
+<body>
+    <div class="navbar">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="/rides">Rides</a>
+        <a class="navbar-item" href="/dining">Dining</a>
+        <a class="navbar-item-active" href="/events">Events</a>
+        <a class="navbar-item" href="/map">Park Map</a>
+    </div>
+
+    <div class="main-content">
+        <div id="event-container"></div>    
+    </div>
+
+    <script src="http://127.0.0.1:8081/js/index.js"></script>
+    <script src="http://127.0.0.1:8081/js/events/event_details.js"></script>
+    <script>
+        setupOnDataLoad((data) => {
+            const event = getEventDetails(data);
+            createEventDetails(event, 'event-container');
+        });
+    </script>
+</body>
+</html>
