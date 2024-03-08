@@ -5,7 +5,7 @@ import * as App from '../../app';
 
 import { ListDataElement } from '../../assets/components/list';
 
-import '../../assets/components/list';
+import './../../assets/components/list';
 import { Event, EventSearchProps } from 'thrill-map-models';
 
 @customElement('events-list-view')

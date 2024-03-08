@@ -6,8 +6,8 @@ import update from '../update';
 
 import * as App from '../app';
 
-import '../assets/components/thrill-map-router';
-import '../assets/components/navbar';
+import './../assets/components/thrill-map-router';
+import './../assets/components/navbar';
 
 @customElement('thrill-map-app')
 class ThrillMapApp extends App.Main {

@@ -7,7 +7,7 @@ import { ListDataElement } from '../../assets/components/list';
 
 import { Restaurant, RestaurantSearchProps } from 'thrill-map-models';
 
-import '../../assets/components/list';
+import './../../assets/components/list';
 
 @customElement('restaurants-list-view')
 class RestaurantsListView extends App.View {

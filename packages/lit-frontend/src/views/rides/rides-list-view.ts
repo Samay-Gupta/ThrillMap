@@ -6,7 +6,7 @@ import * as App from '../../app';
 import { Ride, RideSearchProps } from 'thrill-map-models';
 import { ListDataElement } from '../../assets/components/list';
 
-import '../../assets/components/list';
+import './../../assets/components/list';
 
 @customElement('rides-list-view')
 class RidesListView extends App.View {

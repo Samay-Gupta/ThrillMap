@@ -1,26 +1,26 @@
 import { Route } from '@vaadin/router';
 
-import '../views/home-view';
+import './../views/home-view';
 
-import '../views/account/login-view';
-import '../views/account/signup-view';
-import '../views/account/profile-view';
-import '../views/account/edit-profile-view';
-import '../views/account/settings-view';
+import './../views/account/login-view';
+import './../views/account/signup-view';
+import './../views/account/profile-view';
+import './../views/account/edit-profile-view';
+import './../views/account/settings-view';
 
-import '../views/rides/rides-navigation-view';
-import '../views/rides/rides-list-view';
-import '../views/rides/ride-details-view';
+import './../views/rides/rides-navigation-view';
+import './../views/rides/rides-list-view';
+import './../views/rides/ride-details-view';
 
-import '../views/dining/restaurants-list-view';
-import '../views/dining/restaurant-details-view';
-import '../views/dining/restaurant-order-view';
-import '../views/dining/restaurant-order-details-view';
+import './../views/dining/restaurants-list-view';
+import './../views/dining/restaurant-details-view';
+import './../views/dining/restaurant-order-view';
+import './../views/dining/restaurant-order-details-view';
 
-import '../views/events/events-list-view';
-import '../views/events/event-details-view';
+import './../views/events/events-list-view';
+import './../views/events/event-details-view';
 
-import '../views/map/park-map-view';
+import './../views/map/park-map-view';
 
 export const AppRoutes: Route[] = [
   {
