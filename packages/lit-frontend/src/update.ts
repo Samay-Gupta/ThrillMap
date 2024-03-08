@@ -20,7 +20,7 @@ import { ThrillMapAPI } from './services/thrill-map-api';
 
 const dispatch = App.createDispatch();
 
-dispatch.addMessage('FilterRide', (message: Message) => {
+dispatch.addMessage('RideFiltered', (message: Message) => {
   const { rideFilters } = message as RideFiltered;
 
   return ThrillMapAPI.getRides(rideFilters).then((rideList: Ride[]) => {
@@ -28,7 +28,7 @@ dispatch.addMessage('FilterRide', (message: Message) => {
   });
 });
 
-dispatch.addMessage('FilterRestaurant', (message: Message) => {
+dispatch.addMessage('RestaurantFiltered', (message: Message) => {
   const { restaurantFilters } = message as RestaurantFiltered;
 
   return ThrillMapAPI.getRestaurants(restaurantFilters).then(
@@ -38,7 +38,7 @@ dispatch.addMessage('FilterRestaurant', (message: Message) => {
   );
 });
 
-dispatch.addMessage('FilterEvent', (message: Message) => {
+dispatch.addMessage('EventFiltered', (message: Message) => {
   const { eventFilters } = message as EventFiltered;
 
   return ThrillMapAPI.getEvents(eventFilters).then((eventList: Event[]) => {
