@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/reset.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/tokens.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/index.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/components/navbar.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/components/lists.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8081/css/dining/restaurants.css">
+</head>
+<body>
+    <div class="navbar">
+        <a class="navbar-item" href="/">Home</a>
+        <a class="navbar-item" href="/rides">Rides</a>
+        <a class="navbar-item-active" href="/dining">Dining</a>
+        <a class="navbar-item" href="/events">Events</a>
+        <a class="navbar-item" href="/map">Park Map</a>
+    </div>
+
+    <div class="main-content">
+        <div id="dining-container"></div>
+    </div>
+
+    <script src="http://127.0.0.1:8081/js/index.js"></script>
+    <script src="http://127.0.0.1:8081/js/dining/restaurants.js"></script>
+    <script>
+        setupOnDataLoad((data) => {
+            const restaurant = getDiningDetails(data);
+            createDiningDetails(restaurant, 'dining-container');
+        });
+    </script>
+</body>
+</html>
+
