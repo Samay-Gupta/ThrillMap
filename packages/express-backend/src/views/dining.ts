@@ -17,7 +17,7 @@ export class DiningView {
     }
 
     static async createOrder(req: Request, res: Response) {
-        const authKey = req.query.authKey? req.query.authKey.toString() : "";
+        const authKey = req.headers.authorization ?? "";
         ThrillMapDatabase.createOrder(authKey, req.body).then((order) => {
             res.send(order);
         });
@@ -26,7 +26,7 @@ export class DiningView {
     static async getOrder(req: Request, res: Response) {
         const orderId = req.query.orderId? req.query.orderId.toString() : "";
         ThrillMapDatabase.getOrder(orderId).then((order) => {
-            res.send(order);
+            res.send([order]);
         });
     }
 }

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import ThrillMapDatabase from "../database";
-import { Profile } from "models/Profile";
+
 import { Account } from "models/Account";
 
 export class AccountView {
@@ -16,16 +16,6 @@ export class AccountView {
             } else {
                 res.send({ authKey: authKey});
             }
-        });
-    }
-
-    static async getProfile(req: Request, res: Response) {
-        const filters = {
-            'authKey': req.headers.authorization
-        };
-        console.log(filters);
-        ThrillMapDatabase.getProfile(filters).then((profile) => {   
-            res.send(profile);
         });
     }
 }

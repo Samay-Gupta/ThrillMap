@@ -5,6 +5,7 @@ export interface MenuItem {
 }
 
 export interface Restaurant {
+    restaurantId: string;
     name: string;
     description: string;
     type: string;
@@ -13,6 +14,7 @@ export interface Restaurant {
 }
 
 export interface RestaurantSearchProps {
+    restaurantId?: string;
     name?: string;
     type?: string;
 }

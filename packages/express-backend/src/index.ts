@@ -18,23 +18,17 @@ app.get("/api/rides", RideView.getRides);
 
 app.get("/api/dining", DiningView.getRestaurants);
 
-app.post("/api/dining/orders/new", DiningView.createOrder);
+app.post("/api/dining/orders", DiningView.createOrder);
 
-app.get("/api/dining/orders/get", DiningView.getOrder);
+app.get("/api/dining/orders", DiningView.getOrder);
 
 app.get("/api/events", EventView.getEvents);
 
 app.post("/api/account/login", AccountView.login);
 
-app.get("/api/account/profile", AccountView.getProfile);
+app.get("/api/profile", ProfileView.getProfile);
 
-
-
-app.get("/api/profile/get", ProfileView.getProfile);
-
-app.post("/api/profile/login", ProfileView.login);
-
-app.post("/api/profile/edit", ProfileView.editProfile);
+app.put("/api/profile", ProfileView.editProfile);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

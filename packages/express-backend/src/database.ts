@@ -7,7 +7,7 @@ import ProfileSchema from "./schemas/ProfileSchema";
 import AccountSchema from "./schemas/AccountSchema";
 
 import { Ride } from "./models/Ride";
-import { Restaurant } from "./models/Restaurant";
+import { Restaurant } from "./models/Restaurqant";
 import { Event } from "./models/Event";
 import { Profile } from "./models/Profile";
 import { Account } from "./models/Account";
@@ -73,12 +73,13 @@ class ThrillMapDatabase {
         return eventList;
     }
 
-    static async editProfile(filter: any = {}, profile: Partial<Profile>): Promise<void> {
+    static async editProfile(filter: any = {}, profile: Partial<Profile>): Promise<Profile | null> {
         const profileId = await this.getProfileIdFromAuthKey(filter.authKey);
- 
+        let profileInfo = null
         if (profileId) {
-            await ThrillMapDatabase.models.Profile.updateOne({_id: profileId}, { $set: profile });
+            profileInfo = await ThrillMapDatabase.models.Profile.updateOne({_id: profileId}, { $set: profile });
         }
+        return profileInfo
     }
 
     static async getProfile(filter: any = {}): Promise<Profile | undefined> {
@@ -108,20 +109,21 @@ class ThrillMapDatabase {
         if (!userProfile) {
             return undefined;
         }
-        const restaurantList = await ThrillMapDatabase.getRestaurants({name: order.restaurant});
+        const restaurantList = await ThrillMapDatabase.getRestaurants({restaurantId: order.restaurantId});
         if (restaurantList.length !== 1) {
             return undefined;
-        }
-        order.restaurant = restaurantList[0]._id.toString();    
+        } 
         const newOrder = new ThrillMapDatabase.models.Order(order);
         await newOrder.save();
-        await ThrillMapDatabase.models.Profile.updateOne({_id: userProfile._id}, { $push: { orders: newOrder._id.toString() } });
+        await ThrillMapDatabase.models.Profile.updateOne({_id: userProfile._id}, { $push: { orders: newOrder._id.toString() } });    
+        newOrder.orderId = newOrder._id.toString();
         return newOrder;
     }
 
     static async getOrder(orderId: string): Promise<Order | undefined> {
         const order = await ThrillMapDatabase.models.Order.findOne({_id: orderId});
         if (order) {
+            order.orderId = orderId;
             return order;
         }
     }
