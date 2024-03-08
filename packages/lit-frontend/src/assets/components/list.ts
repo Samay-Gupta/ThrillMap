@@ -16,7 +16,7 @@ interface ListFilter {
 const listElement = (data: ListDataElement) => {
   return html`
     <a href="${data.href}" class="list-info">
-      <img src="../..${data.imageURL}" class="list-image" />
+      <img src="${data.imageURL}" class="list-image" />
       <div class="list-container">
         <h3>${data.name}</h3>
         <p>${data.description}</p>

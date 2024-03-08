@@ -10,7 +10,7 @@ const pageHtml = html`
       cardHeight="70vh"
       cardTitle="Thrill Rides"
       cardContent="Exciting rides with high speeds and steep drops."
-      cardImage="../../assets/images/thrill_rides.png"
+      cardImage="/assets/images/thrill_rides.png"
       cardBackground="var(--color-accent1)"
       cardTextColor="var(--color-white)"
     >
@@ -20,7 +20,7 @@ const pageHtml = html`
       cardHeight="70vh"
       cardTitle="Water Rides"
       cardContent="Refreshing aquatic adventures for all ages."
-      cardImage="../../assets/images/water_rides.png"
+      cardImage="/assets/images/water_rides.png"
       cardBackground="var(--color-accent2)"
       cardTextColor="var(--color-white)"
     >
@@ -30,7 +30,7 @@ const pageHtml = html`
       cardHeight="70vh"
       cardTitle="Family Rides"
       cardContent="Enjoyable rides perfect for family fun."
-      cardImage="../../assets/images/family_rides.png"
+      cardImage="/assets/images/family_rides.png"
       cardBackground="var(--color-accent3)"
       cardTextColor="var(--color-white)"
     >

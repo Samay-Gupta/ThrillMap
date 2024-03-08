@@ -77,7 +77,7 @@ class EventDetailsView extends App.View {
     const event = this.eventsList[0];
     return html`
       <div class="event-div">
-        <img src="../..${event.imageURL}" alt="${event.name}" class="event-image" />
+        <img src="${event.imageURL}" alt="${event.name}" class="event-image" />
         <div class="text-div">
           <h2 class="event-name">${event.name}</h2>
           <p class="event-description">${event.description}</p>

@@ -140,7 +140,7 @@ class RestaurantDetailsView extends App.View {
     return html`<div class="restaurant">
       <div class="restaurant-info">
         <img
-          src="../..${restaurant.imageURL}"
+          src="${restaurant.imageURL}"
           alt="${restaurant.name}"
           class="restaurant-image"
         />

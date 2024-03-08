@@ -108,7 +108,7 @@ class RideDetailsView extends App.View {
         : html`
             <div class="ride-details-section">
               <svg class="icon">
-                <use href="../../assets/icons/icons.svg#icon-min-height"></use>
+                <use href="/assets/icons/icons.svg#icon-min-height"></use>
               </svg>
               <span class="ride-details-text"
                 >Min Height: ${ride.minHeight}in</span
@@ -117,7 +117,7 @@ class RideDetailsView extends App.View {
           `;
     return html`
       <div class="ride-details">
-        <img src="../..${ride.imageURL}" alt="${ride.name}" class="ride-image" />
+        <img src="${ride.imageURL}" alt="${ride.name}" class="ride-image" />
         <div class="ride-info">
           <h2 class="ride-title">${ride.name}</h2>
           <p class="ride-description">${ride.description}</p>
