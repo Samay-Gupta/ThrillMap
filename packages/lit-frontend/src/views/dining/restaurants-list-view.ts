@@ -7,7 +7,7 @@ import { ListDataElement } from '../../assets/components/list';
 
 import { Restaurant, RestaurantSearchProps } from 'thrill-map-models';
 
-import '/components/list';
+import '../../assets/components/list';
 
 @customElement('restaurants-list-view')
 class RestaurantsListView extends App.View {
@@ -19,7 +19,7 @@ class RestaurantsListView extends App.View {
   connectedCallback() {
     super.connectedCallback();
     this.dispatchMessage({
-      type: 'FilterRestaurant',
+      type: 'RestaurantFiltered',
       restaurantFilters: {} as RestaurantSearchProps,
     });
   }

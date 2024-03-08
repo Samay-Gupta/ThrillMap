@@ -12,10 +12,11 @@ import '../../assets/components/list';
 class RidesListView extends App.View {
   @property({ attribute: 'category', reflect: true })
   get category() {
+    // @ts-ignore
     return this.location?.params.category || '';
   }
 
-  @property()
+  @property({ type: Array })
   get ridesList() {
     return this.getFromModel<Ride[]>('rides');
   }
@@ -23,7 +24,7 @@ class RidesListView extends App.View {
   connectedCallback() {
     super.connectedCallback();
     this.dispatchMessage({
-      type: 'FilterRide',
+      type: 'RideFiltered',
       rideFilters: {
         category: this.category,
       } as RideSearchProps,

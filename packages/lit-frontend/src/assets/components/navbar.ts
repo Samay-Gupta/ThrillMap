@@ -80,7 +80,7 @@ const navbarStyles = css`
 const getPath = navPages => {
   const urlPath = window.location.pathname;
   let path = '/';
-  navPages.forEach(([name, href]) => {
+  navPages.forEach(([_, href]) => {
     if (urlPath.startsWith(href)) {
       path = href;
     }

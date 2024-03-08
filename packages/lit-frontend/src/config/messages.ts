@@ -45,7 +45,7 @@ export interface OrderFiltered extends MessageType<'OrderFiltered'> {
 }
 
 export interface CreateOrder extends MessageType<'CreateOrder'> {
-  orderDetails: Order;
+  orderDetails: Partial<Order>;
 }
 
 export type Message =

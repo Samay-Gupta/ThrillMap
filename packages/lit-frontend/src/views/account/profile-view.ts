@@ -84,7 +84,7 @@ const pageStyles = css`
 
 @customElement('profile-view')
 class ProfileView extends App.View {
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }

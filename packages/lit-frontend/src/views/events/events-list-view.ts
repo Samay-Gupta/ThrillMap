@@ -5,12 +5,12 @@ import * as App from '../../app';
 
 import { ListDataElement } from '../../assets/components/list';
 
-import '/components/list';
+import '../../assets/components/list';
 import { Event, EventSearchProps } from 'thrill-map-models';
 
 @customElement('events-list-view')
 class EventsListView extends App.View {
-  @property()
+  @property({ type: Array })
   get eventsList() {
     return this.getFromModel<Event[]>('events');
   }
@@ -18,7 +18,7 @@ class EventsListView extends App.View {
   connectedCallback() {
     super.connectedCallback();
     this.dispatchMessage({
-      type: 'FilterEvent',
+      type: 'EventFiltered',
       eventFilters: {} as EventSearchProps,
     });
   }

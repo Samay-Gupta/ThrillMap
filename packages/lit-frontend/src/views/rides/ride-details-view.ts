@@ -76,10 +76,11 @@ const pageStyles = css`
 class RideDetailsView extends App.View {
   @property({ attribute: 'name', reflect: true })
   get name() {
+    // @ts-ignore
     return this.location?.params.name || '';
   }
 
-  @property()
+  @property({ type: Array })
   get ridesList() {
     return this.getFromModel<Ride[]>('rides');
   }
@@ -87,7 +88,7 @@ class RideDetailsView extends App.View {
   connectedCallback() {
     super.connectedCallback();
     this.dispatchMessage({
-      type: 'FilterRide',
+      type: 'RideFiltered',
       rideFilters: {
         name: this.name,
       } as RideSearchProps,

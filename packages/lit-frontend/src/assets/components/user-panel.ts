@@ -138,7 +138,7 @@ const userPanelStyles = css`
 
 @customElement('user-panel')
 class UserPanel extends App.View {
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }

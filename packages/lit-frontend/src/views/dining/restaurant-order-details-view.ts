@@ -107,6 +107,7 @@ const pageStyles = css`
 class RestaurantOrderDetailsView extends App.View {
   @property({ attribute: 'orderId', reflect: true })
   get orderId() {
+    // @ts-ignore
     return this.location?.params.orderId || '';
   }
 
@@ -128,7 +129,7 @@ class RestaurantOrderDetailsView extends App.View {
   connectedCallback() {
     super.connectedCallback();
     this.dispatchMessage({
-      type: 'FilterRestaurant',
+      type: 'RestaurantFiltered',
       restaurantFilters: {} as RestaurantSearchProps,
     });
     this.dispatchMessage({

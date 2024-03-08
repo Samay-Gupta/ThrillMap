@@ -49,10 +49,11 @@ const pageStyles = css`
 class EventDetailsView extends App.View {
   @property({ attribute: 'name', reflect: true })
   get name() {
+    // @ts-ignore
     return this.location?.params.name || '';
   }
 
-  @property()
+  @property({ type: Array })
   get eventsList() {
     return this.getFromModel<Event[]>('events');
   }
@@ -60,7 +61,7 @@ class EventDetailsView extends App.View {
   connectedCallback() {
     super.connectedCallback();
     this.dispatchMessage({
-      type: 'FilterEvent',
+      type: 'EventFiltered',
       eventFilters: {
         name: this.name,
       } as EventSearchProps,
