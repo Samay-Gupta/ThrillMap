@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-interface ListDataElement {
+export interface ListDataElement {
   href: string;
   imageURL: string;
   name: string;
@@ -74,7 +74,7 @@ const filterResponse = (filter: ListFilter, listData: ListDataElement[]) => {
 
 const listTemplate = (
   listTitle: string,
-  listData: [ListDataElement],
+  listData: ListDataElement[],
   filter: ListFilter,
   updateFilter: any
 ) => {
@@ -177,7 +177,7 @@ const listStyles = css`
         outline: none;
         min-width: 5vw;
         appearance: none;
-        -webkit-appearance:
+        -webkit-appearance: none;
         -moz-appearance: none;
         background-color: color(--color-secondary);
         cursor: pointer;
@@ -201,7 +201,7 @@ class List extends LitElement {
   listTitle = '';
 
   @property({ type: Array })
-  listData: [ListDataElement];
+  listData: ListDataElement[];
 
   @property({ type: Object, reflect: true })
   filter: ListFilter = {
@@ -216,7 +216,7 @@ class List extends LitElement {
 
   updateFilter(e: Event) {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? (target as HTMLInputElement).checked : target.value;
     const name = target.name;
     this.filter = { ...this.filter, [name]: value };
     this.requestUpdate();

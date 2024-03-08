@@ -1,7 +1,7 @@
 import { css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 
 const pageHtml = html`
   <div class="ride-category-container">

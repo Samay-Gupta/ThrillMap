@@ -1,10 +1,10 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import { AppRoutes } from '/config/routes';
-import update from '/update';
+import { AppRoutes } from '../config/routes';
+import update from '../update';
 
-import * as App from '/app';
+import * as App from '../app';
 
 import '/components/thrill-map-router';
 import '/components/navbar';

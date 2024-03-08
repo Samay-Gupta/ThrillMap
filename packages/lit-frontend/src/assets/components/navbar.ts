@@ -1,8 +1,9 @@
-import { css, html, LitElement } from 'lit';
+import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import * as App from '/app';
+import * as App from '../../app';
 import './drop-down';
 import './user-panel';
+import { Profile } from 'thrill-map-models';
 
 const navbarStyles = css`
   .navbar {
@@ -97,7 +98,7 @@ class Navbar extends App.View {
     ['Park Map', '/map/'],
   ];
 
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }

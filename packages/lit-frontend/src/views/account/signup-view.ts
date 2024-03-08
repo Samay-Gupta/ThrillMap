@@ -1,10 +1,10 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 import { Router } from '@vaadin/router';
 
-import { SignUpForm } from '/models/account';
+import { Profile, SignUpForm } from 'thrill-map-models';
 
 const pageStyles = css`
   .signup-form {
@@ -63,7 +63,7 @@ const pageStyles = css`
 
 @customElement('signup-view')
 class SignUpView extends App.View {
-  @property()
+  @property({ type: Object })
   signUpForm: SignUpForm = {
     firstName: '',
     lastName: '',
@@ -72,7 +72,7 @@ class SignUpView extends App.View {
     confirmPassword: '',
   };
 
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }
@@ -146,7 +146,7 @@ class SignUpView extends App.View {
 
   handleInputChange(e) {
     const { name, value } = e.target;
-    this.loginForm = { ...this.loginForm, [name]: value };
+    this.signUpForm = { ...this.signUpForm, [name]: value };
   }
 
   attemptSignUp(e) {

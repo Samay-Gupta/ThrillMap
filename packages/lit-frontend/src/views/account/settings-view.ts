@@ -1,7 +1,7 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 
 const settingsStyles = css`
   .settings-form {
@@ -66,10 +66,10 @@ const settingsStyles = css`
 
 @customElement('settings-view')
 class SettingsView extends App.View {
-  @property({})
+  @property({ type: Boolean })
   showPasswordChangeForm = false;
 
-  @property({})
+  @property({ type: Object })
   passwordChangeForm = {
     currentPassword: '',
     newPassword: '',

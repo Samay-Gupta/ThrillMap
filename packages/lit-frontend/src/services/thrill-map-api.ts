@@ -13,7 +13,7 @@ import {
 } from 'thrill-map-models';
 import { LoginForm, SignUpForm } from 'thrill-map-models';
 
-import { AUTH_TOKEN_KEY, API_ROOT } from '/config/constants';
+import { AUTH_TOKEN_KEY, API_ROOT } from '../config/constants';
 
 function getURLSearchParams<T extends object>(params: T): string {
   const filters: string[] = [];

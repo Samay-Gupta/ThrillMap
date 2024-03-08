@@ -8,7 +8,6 @@ import {
   LoginUser,
   SignUpUser,
   ProfileUpdate,
-  RefreshProfile,
   OrderFiltered,
   CreateOrder,
 } from './config/messages';
@@ -47,7 +46,7 @@ dispatch.addMessage('FilterEvent', (message: Message) => {
   });
 });
 
-dispatch.addMessage('RefreshProfile', (message: Message) => {
+dispatch.addMessage('RefreshProfile', (_: Message) => {
   return ThrillMapAPI.getUser().then((profile: Profile | null) => {
     if (profile) {
       localStorage.setItem('profile', JSON.stringify(profile));
@@ -78,9 +77,15 @@ dispatch.addMessage('SignUpUser', (message: Message) => {
   });
 });
 
-dispatch.addMessage('LogoutUser', (message: Message) => {
+async function logoutUser() {
   localStorage.removeItem(AUTH_TOKEN_KEY);
-  return App.updateProps({ profile: null });
+  return null;
+}
+
+dispatch.addMessage('LogoutUser', (_: Message) => {
+  return logoutUser().then((profile: Profile | null) => {
+    return App.updateProps({ profile: profile });
+  });
 });
 
 dispatch.addMessage('ProfileUpdate', (message: Message) => {

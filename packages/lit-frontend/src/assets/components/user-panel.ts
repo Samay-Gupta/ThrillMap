@@ -1,13 +1,11 @@
-import { css, html, LitElement } from 'lit';
+import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-
-import Session from '../assets/scripts/session';
 
 import { Profile } from 'thrill-map-models';
 
-import * as App from '/app';
+import * as App from '../../app';
 import { Router } from '@vaadin/router';
-import { PROFILE_KEY } from '../config/constants';
+import { PROFILE_KEY } from '../../config/constants';
 
 const userPanelStyles = css`
   :host {

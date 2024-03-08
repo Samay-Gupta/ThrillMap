@@ -1,9 +1,9 @@
-import { css, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 
-import { ListDataElement } from '/components/list';
+import { ListDataElement } from '../../assets/components/list';
 
 import { Restaurant, RestaurantSearchProps } from 'thrill-map-models';
 
@@ -11,7 +11,7 @@ import '/components/list';
 
 @customElement('restaurants-list-view')
 class RestaurantsListView extends App.View {
-  @property()
+  @property({ type: Array })
   get restaurantsList() {
     return this.getFromModel<Restaurant[]>('restaurants');
   }

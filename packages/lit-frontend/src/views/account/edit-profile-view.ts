@@ -1,10 +1,9 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 import { Router } from '@vaadin/router';
-
-import { LoginForm } from '/models/account';
+import { Profile } from 'thrill-map-models';
 
 const pageStyles = css`
   .profile-form {
@@ -63,12 +62,12 @@ const pageStyles = css`
 
 @customElement('edit-profile-view')
 class EditProfileView extends App.View {
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }
 
-  @property()
+  @property({ type: Object })
   profileForm = {
     firstName: '',
     lastName: '',

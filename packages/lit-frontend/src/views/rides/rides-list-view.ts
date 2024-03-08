@@ -1,12 +1,12 @@
-import { css, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 
 import { Ride, RideSearchProps } from 'thrill-map-models';
-import { ListDataElement } from '/components/list';
+import { ListDataElement } from '../../assets/components/list';
 
-import '/components/list';
+import '../../assets/components/list';
 
 @customElement('rides-list-view')
 class RidesListView extends App.View {

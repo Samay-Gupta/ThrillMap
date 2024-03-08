@@ -1,7 +1,7 @@
 import { LitElement } from 'lit';
 
-import { TypedMessage } from '/config/messages';
-import { ModelMap } from '/config/models';
+import { TypedMessage } from './config/messages';
+import { ModelMap } from './config/models';
 
 type UpdateResult<M> = M | Promise<ModelMap<M>>;
 

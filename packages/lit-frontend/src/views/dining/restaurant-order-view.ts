@@ -1,8 +1,8 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { Restaurant, RestaurantSearchProps } from 'thrill-map-models';
+import { Profile, Restaurant } from 'thrill-map-models';
 
-import * as App from '/app';
+import * as App from '../../app';
 
 import { Router } from '@vaadin/router';
 
@@ -131,12 +131,12 @@ const pageStyles = css`
 
 @customElement('restaurant-order-view')
 class RestaurantOrderView extends App.View {
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }
 
-  @property()
+  @property({ type: Array })
   get restaurantsList() {
     return this.getFromModel<Restaurant[]>('restaurants');
   }
@@ -255,7 +255,6 @@ class RestaurantOrderView extends App.View {
       total: this.getTotal(),
       status: 'Placed',
     };
-    // ThrillMapAPI.createOrder(orderDetails);
     if (this.getOrder().length === 0) {
       return;
     }
@@ -272,7 +271,7 @@ class RestaurantOrderView extends App.View {
     }
     const restaurant = this.restaurantsList[0];
     return restaurant.menu
-      .filter((menuItem, index) => this.orderItems[index] > 0)
+      .filter((_, index) => this.orderItems[index] > 0)
       .map((menuItem, index) => {
         return {
           ...menuItem,

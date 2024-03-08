@@ -1,9 +1,9 @@
-import { css, html } from 'lit';
+import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 
-import { ListDataElement } from '/components/list';
+import { ListDataElement } from '../../assets/components/list';
 
 import '/components/list';
 import { Event, EventSearchProps } from 'thrill-map-models';

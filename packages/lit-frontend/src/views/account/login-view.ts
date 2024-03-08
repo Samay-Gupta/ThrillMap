@@ -1,10 +1,10 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 import { Router } from '@vaadin/router';
 
-import { LoginForm } from '/models/account';
+import { LoginForm, Profile } from 'thrill-map-models';
 
 const pageStyles = css`
   .login-form {
@@ -63,13 +63,13 @@ const pageStyles = css`
 
 @customElement('login-view')
 class LoginView extends App.View {
-  @property()
+  @property({ type: Object })
   loginForm: LoginForm = {
     email: '',
     password: '',
   };
 
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }

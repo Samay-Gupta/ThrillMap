@@ -1,14 +1,14 @@
 import { css, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import {
   Restaurant,
   Order,
   OrderSearchProps,
   RestaurantSearchProps,
-  MenuItem,
+  Profile,
 } from 'thrill-map-models';
 
-import * as App from '/app';
+import * as App from '../../app';
 import { Router } from '@vaadin/router';
 
 const pageStyles = css`
@@ -110,17 +110,17 @@ class RestaurantOrderDetailsView extends App.View {
     return this.location?.params.orderId || '';
   }
 
-  @property()
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
   }
 
-  @property()
+  @property({ type: Array })
   get orderList() {
     return this.getFromModel<Order[]>('orders');
   }
 
-  @property()
+  @property({ type: Array })
   get restaurantList() {
     return this.getFromModel<Restaurant[]>('restaurants');
   }

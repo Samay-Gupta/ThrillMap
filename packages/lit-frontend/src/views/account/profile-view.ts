@@ -1,11 +1,9 @@
 import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import * as App from '/app';
+import * as App from '../../app';
 import { Router } from '@vaadin/router';
-
-import { LoginForm } from '/models/account';
-import { ThrillMapAPI } from '../../services/thrill-map-api';
+import { Order, Profile } from 'thrill-map-models';
 
 const pageStyles = css`
   .profile-container {
@@ -139,8 +137,8 @@ class ProfileView extends App.View {
     if (!this.profile.orders || this.profile.orders.length === 0) {
       return html`<div>No orders found</div>`;
     }
-    return this.profile.orders.map(order => {
-      order = JSON.parse(order) as Order;
+    return this.profile.orders.map(orderString => {
+      const order = JSON.parse(orderString) as Order;
       return html`
         <app-card
           href="/dining/order/${order.orderId}/"

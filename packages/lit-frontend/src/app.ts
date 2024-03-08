@@ -2,8 +2,8 @@ import { consume, createContext, provide } from '@lit/context';
 import { property, state } from 'lit/decorators.js';
 import * as MVU from './mvu';
 
-import { Model } from '/config/models';
-import { Message } from '/config/messages';
+import { Model } from './config/models';
+import { Message } from './config/messages';
 
 import { PROFILE_KEY } from './config/constants';
 import { Profile } from 'thrill-map-models';
