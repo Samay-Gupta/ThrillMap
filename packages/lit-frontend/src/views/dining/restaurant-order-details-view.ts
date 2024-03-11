@@ -190,7 +190,7 @@ class RestaurantOrderDetailsView extends App.View {
                 item => html`
                   <div class="order-item">
                     <div>${item.item} x${item.quantity}</div>
-                    <div>$${item.quantity * item.price}</div>
+                    <div>$${Number(item.quantity * item.price).toFixed(2)}</div>
                   </div>
                 `
               )}

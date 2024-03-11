@@ -276,7 +276,6 @@ class RestaurantOrderView extends App.View {
     }
     const restaurant = this.restaurantsList[0];
     return restaurant.menu
-      .filter((_, index) => this.orderItems[index] > 0)
       .map((menuItem, index) => {
         return {
           ...menuItem,
