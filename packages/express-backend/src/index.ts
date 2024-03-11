@@ -32,6 +32,6 @@ app.get("/api/profile", ProfileView.getProfile);
 
 app.put("/api/profile", ProfileView.editProfile);
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
