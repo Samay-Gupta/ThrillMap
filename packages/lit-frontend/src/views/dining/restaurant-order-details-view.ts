@@ -10,6 +10,7 @@ import {
 
 import * as App from '../../app';
 import { Router } from '@vaadin/router';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
   .order-container {
@@ -128,6 +129,7 @@ class RestaurantOrderDetailsView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/dining/');
     this.dispatchMessage({
       type: 'RestaurantFiltered',
       restaurantFilters: {} as RestaurantSearchProps,

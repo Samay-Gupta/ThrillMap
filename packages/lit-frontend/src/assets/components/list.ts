@@ -166,6 +166,7 @@ const listStyles = css`
     border-radius: 10px;
     outline: none;
     background-color: var(--color-background-primary);
+    color: var(--color-gray2);
   }
 
   .input-filter:focus {

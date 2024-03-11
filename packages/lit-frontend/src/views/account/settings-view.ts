@@ -2,6 +2,7 @@ import { css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import * as App from '../../app';
+import { NavPages } from '../../assets/components/navbar';
 
 const settingsStyles = css`
   .settings-form {
@@ -75,6 +76,11 @@ class SettingsView extends App.View {
     newPassword: '',
     confirmNewPassword: '',
   };
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    NavPages.setActive('/');
+  }
 
   static styles = settingsStyles;
 

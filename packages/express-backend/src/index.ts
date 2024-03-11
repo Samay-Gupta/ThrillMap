@@ -26,6 +26,8 @@ app.get("/api/events", EventView.getEvents);
 
 app.post("/api/account/login", AccountView.login);
 
+app.post("/api/account/signup", AccountView.signup);
+
 app.get("/api/profile", ProfileView.getProfile);
 
 app.put("/api/profile", ProfileView.editProfile);

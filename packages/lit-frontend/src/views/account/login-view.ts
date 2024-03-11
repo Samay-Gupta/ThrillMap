@@ -5,6 +5,7 @@ import * as App from '../../app';
 import { Router } from '@vaadin/router';
 
 import { LoginForm, Profile } from 'thrill-map-models';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
   .login-form {
@@ -72,6 +73,11 @@ class LoginView extends App.View {
   @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    NavPages.setActive('/');
   }
 
   static styles = pageStyles;

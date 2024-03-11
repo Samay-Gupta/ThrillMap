@@ -18,4 +18,20 @@ export class AccountView {
             }
         });
     }
+
+    static async signup(req: Request, res: Response) {
+        const account = {
+            'email': req.body.email,
+            'password': req.body.password,
+        } as Partial<Account>;
+        const profile = {
+            'email': req.body.email,
+            'firstName': req.body.firstName,
+            'lastName': req.body.lastName,
+            'profileImageURL': '',
+            'orders': [],
+            'preferences': {}
+        };
+        
+    }
 }

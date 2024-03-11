@@ -2,6 +2,7 @@ import { css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 import * as App from '../../app';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageHtml = html`
   <div class="ride-category-container">
@@ -86,6 +87,11 @@ const pageStyles = css`
 @customElement('rides-navigation-view')
 class RidesNavigationView extends App.View {
   static styles = pageStyles;
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    NavPages.setActive('/rides/');
+  }
 
   render() {
     return pageHtml;

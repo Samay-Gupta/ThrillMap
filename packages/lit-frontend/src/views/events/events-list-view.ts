@@ -7,6 +7,7 @@ import { ListDataElement } from '../../assets/components/list';
 
 import './../../assets/components/list';
 import { Event, EventSearchProps } from 'thrill-map-models';
+import { NavPages } from '../../assets/components/navbar';
 
 @customElement('events-list-view')
 class EventsListView extends App.View {
@@ -17,6 +18,7 @@ class EventsListView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/events/');
     this.dispatchMessage({
       type: 'EventFiltered',
       eventFilters: {} as EventSearchProps,

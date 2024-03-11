@@ -5,6 +5,7 @@ import { Profile, Restaurant } from 'thrill-map-models';
 import * as App from '../../app';
 
 import { Router } from '@vaadin/router';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
   .order-container {
@@ -146,6 +147,7 @@ class RestaurantOrderView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/dining/');
   }
 
   render() {
@@ -239,6 +241,9 @@ class RestaurantOrderView extends App.View {
   removeItem(index: number) {
     if (this.orderItems[index] > 0) {
       this.orderItems[index]--;
+      if (this.orderItems[index] === 0) {
+        delete this.orderItems[index];
+      }
     }
     this.orderItems = { ...this.orderItems };
   }
@@ -262,7 +267,7 @@ class RestaurantOrderView extends App.View {
       type: 'CreateOrder',
       orderDetails: orderDetails,
     });
-    Router.go('/account/');
+    Router.go('/dining/');
   }
 
   getOrder() {

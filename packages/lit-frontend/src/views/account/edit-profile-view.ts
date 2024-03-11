@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import * as App from '../../app';
 import { Router } from '@vaadin/router';
 import { Profile } from 'thrill-map-models';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
   .profile-form {
@@ -76,6 +77,7 @@ class EditProfileView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/');
     if (this.profile === null) {
       Router.go('/login');
     }

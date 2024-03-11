@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import * as App from '../../app';
 import { Router } from '@vaadin/router';
 import { Order, Profile } from 'thrill-map-models';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
   .profile-container {
@@ -93,6 +94,7 @@ class ProfileView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/');
     this.dispatchMessage({
       type: 'RefreshProfile',
     });

@@ -186,7 +186,7 @@ class UserPanel extends App.View {
         <label class="toggle-switch" @change="${this.toggleDarkMode}">
           <input type="checkbox" ?checked=${this.preferences.darkMode} />
           <span class="toggle-slider">
-            <span class="toggle-icon-light">🔆</span>
+            <span class="toggle-icon-light">&nbsp;🔆</span>
             <span class="toggle-icon-dark">&nbsp;🌙</span>
           </span>
         </label>

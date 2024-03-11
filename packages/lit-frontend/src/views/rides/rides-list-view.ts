@@ -7,6 +7,7 @@ import { Ride, RideSearchProps } from 'thrill-map-models';
 import { ListDataElement } from '../../assets/components/list';
 
 import './../../assets/components/list';
+import { NavPages } from '../../assets/components/navbar';
 
 @customElement('rides-list-view')
 class RidesListView extends App.View {
@@ -23,6 +24,7 @@ class RidesListView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/rides/');
     this.dispatchMessage({
       type: 'RideFiltered',
       rideFilters: {

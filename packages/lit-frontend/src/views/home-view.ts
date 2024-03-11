@@ -3,6 +3,8 @@ import { customElement } from 'lit/decorators.js';
 
 import './../assets/components/card';
 
+import { NavPages } from '../assets/components/navbar';
+
 const pageHtml = html`
   <div class="navigation-cards">
     <app-card
@@ -56,6 +58,11 @@ const pageStyles = css`
 @customElement('home-view')
 class HomeView extends LitElement {
   static styles = pageStyles;
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    NavPages.setActive('/');
+  }
 
   render() {
     return pageHtml;

@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import * as App from '../../app';
 
 import { Event, EventSearchProps } from 'thrill-map-models';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
   .event-div {
@@ -60,6 +61,7 @@ class EventDetailsView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/events/');
     this.dispatchMessage({
       type: 'EventFiltered',
       eventFilters: {

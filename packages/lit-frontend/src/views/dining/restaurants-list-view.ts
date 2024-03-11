@@ -8,6 +8,7 @@ import { ListDataElement } from '../../assets/components/list';
 import { Restaurant, RestaurantSearchProps } from 'thrill-map-models';
 
 import './../../assets/components/list';
+import { NavPages } from '../../assets/components/navbar';
 
 @customElement('restaurants-list-view')
 class RestaurantsListView extends App.View {
@@ -18,6 +19,7 @@ class RestaurantsListView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/dining/');
     this.dispatchMessage({
       type: 'RestaurantFiltered',
       restaurantFilters: {} as RestaurantSearchProps,

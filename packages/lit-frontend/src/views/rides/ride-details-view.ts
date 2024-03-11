@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import * as App from '../../app';
 
 import { Ride, RideSearchProps } from 'thrill-map-models';
+import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
   .ride-details {
@@ -87,6 +88,7 @@ class RideDetailsView extends App.View {
 
   connectedCallback() {
     super.connectedCallback();
+    NavPages.setActive('/rides/');
     this.dispatchMessage({
       type: 'RideFiltered',
       rideFilters: {

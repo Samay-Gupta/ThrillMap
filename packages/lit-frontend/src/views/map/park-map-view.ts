@@ -1,5 +1,6 @@
 import { css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { NavPages } from '../../assets/components/navbar';
 
 import * as App from '../../app';
 
@@ -85,6 +86,11 @@ const pageStyles = css`
 @customElement('park-map-view')
 class ParkMapView extends App.View {
   static styles = pageStyles;
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    NavPages.setActive('/map/');
+  }
 
   render() {
     return pageHtml;

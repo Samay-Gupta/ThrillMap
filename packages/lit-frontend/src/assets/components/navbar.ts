@@ -77,26 +77,31 @@ const navbarStyles = css`
   }
 `;
 
-const getPath = navPages => {
-  const urlPath = window.location.pathname;
-  let path = '/';
-  navPages.forEach(([_, href]) => {
-    if (urlPath.startsWith(href)) {
-      path = href;
-    }
-  });
-  return path;
-};
+export class NavPages {
+  static navbarInstance: Navbar | null = null;
+
+  static setNavbarInstance(instance: Navbar) {
+    this.navbarInstance = instance;
+  }
+
+  static get() {
+    return  [
+      ['Home', '/'],
+      ['Rides', '/rides/'],
+      ['Dining', '/dining/'],
+      ['Events', '/events/'],
+      ['Park Map', '/map/'],
+    ];
+  }
+
+  static setActive(url: string) {
+    this.navbarInstance?.setAttribute('activePath', url);
+  }
+}
 
 @customElement('app-navbar')
 class Navbar extends App.View {
-  navPages = [
-    ['Home', '/'],
-    ['Rides', '/rides/'],
-    ['Dining', '/dining/'],
-    ['Events', '/events/'],
-    ['Park Map', '/map/'],
-  ];
+  
 
   @property({ type: Object })
   get profile() {
@@ -104,7 +109,12 @@ class Navbar extends App.View {
   }
 
   @property({ type: String })
-  activePath = getPath(this.navPages);
+  activePath = '/';
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    NavPages.setNavbarInstance(this);
+  }
 
   render() {
     const profileIcon =
@@ -124,7 +134,7 @@ class Navbar extends App.View {
     return html`
       <div class="navbar">
         <div>
-          ${this.navPages.map(([name, href]) =>
+          ${NavPages.get().map(([name, href]) =>
             this.getNavElement(name, href, this.activePath)
           )}
         </div>
