@@ -46,9 +46,6 @@ class ThrillMapDatabase {
             return ThrillMapDatabase.dbConnection;
         }
         const uri = `mongodb+srv://${username}:${password}@${host}/${db}?retryWrites=true&w=majority`;
-        const conn = mongoose.createConnection(uri);
-        await conn.asPromise();
-        return conn;
         ThrillMapDatabase.dbConnection = mongoose.createConnection(uri);
         await ThrillMapDatabase.dbConnection.asPromise();
         ThrillMapDatabase.models = {
