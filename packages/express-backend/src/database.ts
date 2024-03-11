@@ -23,20 +23,28 @@ class ThrillMapDatabase {
 
     static models: Record<string, Model<any>> = {};
 
-    private static getConnection() {
+    static getConnection() {
         if (ThrillMapDatabase.dbConnection) {
             return ThrillMapDatabase.dbConnection;
         }
-        ThrillMapDatabase.connect(
+        return ThrillMapDatabase.connect(
             MONGODB_USERNAME, 
             MONGODB_PASSWORD, 
             MONGODB_HOST, 
             MONGODB_DB
-        );
-        return ThrillMapDatabase.dbConnection;
+        ).then((response) => {
+            return response;
+        });
     }
 
-    private static async connect(
+    static checkConnection() {
+        if (ThrillMapDatabase.dbConnection) {
+            return
+        }
+        ThrillMapDatabase.getConnection();
+    }
+
+    static async connect(
             username: string | undefined, 
             password: string | undefined, 
             host: string | undefined, 
@@ -59,6 +67,7 @@ class ThrillMapDatabase {
     }
 
     static async getRides(filter: any = {}): Promise<Ride[]> {
+        ThrillMapDatabase.checkConnection();
         const rideList = await ThrillMapDatabase.models.Ride.find(filter);
         return rideList;
     }
