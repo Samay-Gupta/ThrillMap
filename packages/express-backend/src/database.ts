@@ -63,11 +63,13 @@ class ThrillMapDatabase {
     }
 
     static async getRides(filter: any = {}): Promise<Ride[]> {
-        console.log(ThrillMapDatabase.models.Ride, ThrillMapDatabase.dbConnection, 
+        console.log(ThrillMapDatabase.models.Ride, 
+            ThrillMapDatabase.dbConnection, 
             MONGODB_USERNAME, 
             MONGODB_PASSWORD, 
             MONGODB_HOST, 
-            MONGODB_DB);
+            MONGODB_DB
+        );
         const rideList = await ThrillMapDatabase.models.Ride.find(filter);
         return rideList;
     }
