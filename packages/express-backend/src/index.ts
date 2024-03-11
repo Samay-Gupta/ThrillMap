@@ -8,9 +8,7 @@ import { EventView } from "./views/events";
 import { ProfileView } from "./views/profile";
 import { AccountView } from "./views/account";
 
-import serverless from "serverless-http";
-
-const app = express();
+export const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
@@ -34,8 +32,6 @@ app.get("/api/profile", ProfileView.getProfile);
 
 app.put("/api/profile", ProfileView.editProfile);
 
-// app.listen(port, () => {
-//   console.log(`Server running at http://localhost:${port}`);
-// });
-
-export const handler = serverless(app);
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
