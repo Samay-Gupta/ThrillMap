@@ -16,15 +16,6 @@ import 'dotenv/config'
 import { Order } from "models/Order";
 import OrderSchema from "./schemas/OrderSchema";
 
-const SCHEMA = {
-    Ride: RideSchema,
-    Restaurant: RestaurantSchema,
-    Event: EventSchema,
-    Profile: ProfileSchema,
-    Account: AccountSchema,
-    Order: OrderSchema
-};
-
 const { MONGODB_USERNAME, MONGODB_PASSWORD, MONGODB_HOST, MONGODB_DB } = process.env;
 
 class ThrillMapDatabase {
@@ -46,10 +37,6 @@ class ThrillMapDatabase {
         });
     }
 
-    static getModel(modelName) {
-        return conn.model(modelName, SCHEMA[modelName]);
-    }
-
     static async connect(
             username: string | undefined, 
             password: string | undefined, 
@@ -62,23 +49,26 @@ class ThrillMapDatabase {
         const conn = mongoose.createConnection(uri);
         await conn.asPromise();
         return conn;
-        // ThrillMapDatabase.dbConnection = mongoose.createConnection(uri);
-        // await ThrillMapDatabase.dbConnection.asPromise();
-        // ThrillMapDatabase.models = {
-        //     Ride: ThrillMapDatabase.dbConnection.model("Ride", RideSchema),
-        //     Restaurant: ThrillMapDatabase.dbConnection.model("Restaurant", RestaurantSchema),
-        //     Event: ThrillMapDatabase.dbConnection.model("Event", EventSchema),
-        //     Profile: ThrillMapDatabase.dbConnection.model("Profile", ProfileSchema),
-        //     Account: ThrillMapDatabase.dbConnection.model("Account", AccountSchema),
-        //     Order: ThrillMapDatabase.dbConnection.model("Order", OrderSchema)
-        // };
-        // return ThrillMapDatabase.dbConnection;
+        ThrillMapDatabase.dbConnection = mongoose.createConnection(uri);
+        await ThrillMapDatabase.dbConnection.asPromise();
+        ThrillMapDatabase.models = {
+            Ride: ThrillMapDatabase.dbConnection.model("Ride", RideSchema),
+            Restaurant: ThrillMapDatabase.dbConnection.model("Restaurant", RestaurantSchema),
+            Event: ThrillMapDatabase.dbConnection.model("Event", EventSchema),
+            Profile: ThrillMapDatabase.dbConnection.model("Profile", ProfileSchema),
+            Account: ThrillMapDatabase.dbConnection.model("Account", AccountSchema),
+            Order: ThrillMapDatabase.dbConnection.model("Order", OrderSchema)
+        };
+        return ThrillMapDatabase.dbConnection;
     }
 
     static async getRides(filter: any = {}): Promise<Ride[]> {
-        const conn = ThrillMapDatabase.getConnection();
-        const RideModel = getModel(conn, "Ride");
-        const rideList = await RideModel.find(filter);
+        console.log(ThrillMapDatabase.models.Ride, ThrillMapDatabase.dbConnection, 
+            MONGODB_USERNAME, 
+            MONGODB_PASSWORD, 
+            MONGODB_HOST, 
+            MONGODB_DB);
+        const rideList = await ThrillMapDatabase.models.Ride.find(filter);
         return rideList;
     }
 
