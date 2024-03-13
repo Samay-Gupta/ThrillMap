@@ -116,7 +116,7 @@ class Navbar extends App.View {
 
   render() {
     const profileIcon =
-      this.profile !== null && this.profile.profileImageURL !== 'null'
+      this.profile !== null && this.profile.profileImageURL
         ? html`
             <img
               class="profile-image"
