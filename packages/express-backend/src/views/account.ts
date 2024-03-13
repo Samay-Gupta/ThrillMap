@@ -11,7 +11,7 @@ export class AccountView {
             'password': loginForm.password
         } as Partial<Account>;
         ThrillMapDatabase.loginToAccount(credentials).then((authKey) => {
-            if (!authKey) {
+            if (authKey === null) {
                 res.status(401).send();
             } else {
                 res.send({ authKey: authKey});
@@ -34,7 +34,7 @@ export class AccountView {
             'preferences': {}
         };
         ThrillMapDatabase.createAccount(account, profile).then((authKey) => {
-            if (!authKey) {
+            if (authKey === null) {
                 res.status(401).send();
             } else {
                 res.send({ authKey: authKey});

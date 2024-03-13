@@ -54,7 +54,6 @@ class ThrillMapDatabase {
         const conn = await this.getConnection();
         const models = this.getModels(conn);
         const accountList = await models.Account.find(credentials);
-        console.log(accountList);
         if (accountList.length === 1) {
             return accountList[0].authKey;
         }
@@ -68,6 +67,8 @@ class ThrillMapDatabase {
         await newProfile.save();
         account.profileId = newProfile._id.toString();
         const newAccount = new models.Account(account);
+        await newAccount.save();
+        newAccount.authKey = newAccount._id.toString();
         await newAccount.save();
         return newAccount.authKey;
     }
