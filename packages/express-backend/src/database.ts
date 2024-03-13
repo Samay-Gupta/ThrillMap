@@ -50,16 +50,18 @@ class ThrillMapDatabase {
         };
     }
 
-    static async loginToAccount(credentials: Partial<Account>): Promise<string | undefined> {
+    static async loginToAccount(credentials: Partial<Account>): Promise<string | null> {
         const conn = await this.getConnection();
         const models = this.getModels(conn);
         const accountList = await models.Account.find(credentials);
+        console.log(accountList);
         if (accountList.length === 1) {
             return accountList[0].authKey;
         }
+        return null;
     }
 
-    static async createAccount(account: Partial<Account>, profile: Partial<Profile>): Promise<string | undefined> {
+    static async createAccount(account: Partial<Account>, profile: Partial<Profile>): Promise<string | null> {
         const conn = await this.getConnection();
         const models = this.getModels(conn);
         const newProfile = new models.Profile(profile);
@@ -70,16 +72,17 @@ class ThrillMapDatabase {
         return newAccount.authKey;
     }
 
-    static async getProfileIdFromAuthKey(authKey: string): Promise<String | undefined> {
+    static async getProfileIdFromAuthKey(authKey: string): Promise<String | null> {
         const conn = await this.getConnection();
         const models = this.getModels(conn);
         const account = await models.Account.findOne({authKey: authKey});
         if (account) {
             return account.profileId;
         }
+        return null;
     }
 
-    static async getProfile(filter: any = {}): Promise<Profile | undefined> {
+    static async getProfile(filter: any = {}): Promise<Profile | null> {
         const conn = await this.getConnection();
         const models = this.getModels(conn);
         const profileId = await this.getProfileIdFromAuthKey(filter.authKey);
@@ -93,6 +96,7 @@ class ThrillMapDatabase {
             profile.orders = orders.map(order => JSON.stringify(order));
             return profile;
         }
+        return null;
     }
 
     static async editProfile(filter: any = {}, profile: Partial<Profile>) {
