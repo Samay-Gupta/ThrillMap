@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import ThrillMapDatabase from "../database";
-import { Profile } from "models/Profile";
+import { Profile } from "thrill-map-models";
 
 export class ProfileView {
     static async getProfile(req: Request, res: Response) {

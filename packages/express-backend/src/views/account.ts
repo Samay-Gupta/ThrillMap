@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import ThrillMapDatabase from "../database";
 
-import { Account } from "models/Account";
+import { Account } from "thrill-map-models";
 
 export class AccountView {
     static async login(req: Request, res: Response) {
