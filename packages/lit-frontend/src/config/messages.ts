@@ -4,6 +4,7 @@ import {
   RideSearchProps,
   Order,
   OrderSearchProps,
+  OrderForm,
 } from 'thrill-map-models';
 
 import { LoginForm, SignUpForm, ProfileForm } from 'thrill-map-models';
@@ -45,7 +46,7 @@ export interface OrderFiltered extends MessageType<'OrderFiltered'> {
 }
 
 export interface CreateOrder extends MessageType<'CreateOrder'> {
-  orderDetails: Partial<Order>;
+  orderDetails: OrderForm;
 }
 
 export type Message =

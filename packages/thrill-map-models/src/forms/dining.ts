@@ -1,8 +1,7 @@
 export interface OrderForm {
-    restaurantName: string;
+    restaurantId: string;
     desc: string;
     items: any[];
     total: number;
     status: string;
-    date: Date;
 }

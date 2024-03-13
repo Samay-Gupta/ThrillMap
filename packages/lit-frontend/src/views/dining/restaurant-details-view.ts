@@ -3,7 +3,12 @@ import { customElement, property } from 'lit/decorators.js';
 
 import * as App from '../../app';
 
-import { Restaurant, RestaurantSearchProps, MenuItem, Profile } from 'thrill-map-models';
+import {
+  Restaurant,
+  RestaurantSearchProps,
+  MenuItem,
+  Profile,
+} from 'thrill-map-models';
 import { NavPages } from '../../assets/components/navbar';
 
 const pageStyles = css`
@@ -115,10 +120,10 @@ class RestaurantDetailsView extends App.View {
     return this.location?.params.name || '';
   }
 
-  @property({ type: Object }) 
+  @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');
-  };
+  }
 
   @property({ type: Array })
   get restaurantsList() {
@@ -171,13 +176,15 @@ class RestaurantDetailsView extends App.View {
                 : html`<hr class="restaurant-menu-item-divider" />`}
             </div>`;
           })}
-          ${loggedIn ? html` <div class="order-button-container">
-            <a
-              href="/dining/order/?name=${restaurant.name}"
-              class="order-button"
-              >Order Now</a
-            >
-          </div>` : ``}
+          ${loggedIn
+            ? html` <div class="order-button-container">
+                <a
+                  href="/dining/order/?name=${restaurant.name}"
+                  class="order-button"
+                  >Order Now</a
+                >
+              </div>`
+            : ``}
         </div>
       </div>
     </div>`;

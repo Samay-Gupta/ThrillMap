@@ -1,14 +1,14 @@
+import { Account, LoginForm, SignUpForm } from "thrill-map-models";
 import { Request, Response } from "express";
 
 import ThrillMapDatabase from "../database";
 
-import { Account } from "thrill-map-models";
-
 export class AccountView {
     static async login(req: Request, res: Response) {
+        const loginForm = req.body as LoginForm;
         const credentials = {
-            'email': req.body.email,
-            'password': req.body.password
+            'email': loginForm.email,
+            'password': loginForm.password
         } as Partial<Account>;
         ThrillMapDatabase.loginToAccount(credentials).then((authKey) => {
             if (!authKey) {
@@ -20,18 +20,25 @@ export class AccountView {
     }
 
     static async signup(req: Request, res: Response) {
+        const signUpForm = req.body as SignUpForm;
         const account = {
-            'email': req.body.email,
-            'password': req.body.password,
+            'email': signUpForm.email,
+            'password': signUpForm.password,
         } as Partial<Account>;
         const profile = {
-            'email': req.body.email,
-            'firstName': req.body.firstName,
-            'lastName': req.body.lastName,
+            'email': signUpForm.email,
+            'firstName': signUpForm.firstName,
+            'lastName': signUpForm.lastName,
             'profileImageURL': '',
             'orders': [],
             'preferences': {}
         };
-        
+        ThrillMapDatabase.createAccount(account, profile).then((authKey) => {
+            if (!authKey) {
+                res.status(401).send();
+            } else {
+                res.send({ authKey: authKey});
+            }
+        });
     }
 }

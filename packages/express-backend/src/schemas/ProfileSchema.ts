@@ -1,4 +1,4 @@
-import { Schema, ObjectId } from "mongoose";
+import { Schema } from "mongoose";
 import { Profile } from "thrill-map-models";
 
 const ProfileSchema = new Schema<Profile>(

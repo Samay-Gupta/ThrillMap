@@ -13,7 +13,7 @@ const AccountSchema = new Schema<Account>(
             type: String
         },
         profileId: {
-            type: Schema.Types.ObjectId
+            type: String
         }
     },
   { collection: "Account" }

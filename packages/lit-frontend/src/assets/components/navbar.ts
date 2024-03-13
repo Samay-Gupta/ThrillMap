@@ -85,7 +85,7 @@ export class NavPages {
   }
 
   static get() {
-    return  [
+    return [
       ['Home', '/'],
       ['Rides', '/rides/'],
       ['Dining', '/dining/'],
@@ -101,8 +101,6 @@ export class NavPages {
 
 @customElement('app-navbar')
 class Navbar extends App.View {
-  
-
   @property({ type: Object })
   get profile() {
     return this.getFromModel<Profile>('profile');

@@ -275,13 +275,12 @@ class RestaurantOrderView extends App.View {
       return;
     }
     const restaurant = this.restaurantsList[0];
-    return restaurant.menu
-      .map((menuItem, index) => {
-        return {
-          ...menuItem,
-          quantity: this.orderItems[index],
-        };
-      });
+    return restaurant.menu.map((menuItem, index) => {
+      return {
+        ...menuItem,
+        quantity: this.orderItems[index],
+      };
+    });
   }
 
   getTotal() {

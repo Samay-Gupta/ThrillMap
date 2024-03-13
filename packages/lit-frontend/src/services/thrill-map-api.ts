@@ -10,6 +10,7 @@ import {
   Profile,
   OrderSearchProps,
   ProfileForm,
+  OrderForm,
 } from 'thrill-map-models';
 import { LoginForm, SignUpForm } from 'thrill-map-models';
 
@@ -130,7 +131,7 @@ export class ThrillMapAPI {
     return null;
   }
 
-  static async createOrder(order: Partial<Order>): Promise<Order | null> {
+  static async createOrder(order: OrderForm): Promise<Order | null> {
     const response = await fetch(`${API_ROOT}/dining/orders`, {
       method: 'POST',
       body: JSON.stringify(order),
